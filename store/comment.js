@@ -3,12 +3,11 @@
  * @module store/comment
  */
 
-
 import { fetchDelay } from '~/utils/delay'
 import { COMMENT_NUM } from "~/config/app.config";
 export const COMMENT_API_PATH = '/comment'
 export const LIKE_COMMENT_API_PATH = '/like/comment'
-// import { isBrowser } from '~/environment'
+
 
 const getDefaultListData = () => {
   return {

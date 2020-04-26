@@ -29,6 +29,12 @@ export const Theme = {
   Gold: 'gold',
 }
 
+export const SortType = {
+  Asc: 1, // 升序
+  Desc: -1, // 降序
+  Hot: 2 // 热序
+}
+
 export const Route = {
   Index: 'index',
   ArticleDetail: 'article-article_id',

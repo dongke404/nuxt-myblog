@@ -6,18 +6,18 @@
       <span class="item year-month">
         <strong class="choose-year">
           <span>{{ currentYear }}</span>
-          <span>{{ isEnLang ? 'Y' : '年' }}</span>
+          <span>{{ $i18n.calendar.year.value}}</span>
           <span>{{ currentMonth }}</span>
-          <span>{{ isEnLang ? 'M' : '月' }}</span>
+          <span>{{ $i18n.calendar.month.value }}</span>
           <span>{{ currentDay }}</span>
-          <span>{{ isEnLang ? 'D' : '日' }}</span>
+          <span>{{ $i18n.calendar.day.value }}</span>
         </strong>
       </span>
       <span class="item arrow" @click="pickNextMonth(currentYear, currentMonth)">❯</span>
     </div>
     <!-- 星期 -->
     <ul class="weekdays">
-      <li v-for="(day, index) in weeksText" :key="index">{{ day }}</li>
+      <li v-for="(day, index) in $i18n.calendar.weeksText.value" :key="index">{{ day }}</li>
     </ul>
     <!-- 日期 -->
     <div v-if="!days.length" class="days-loading">
@@ -38,9 +38,9 @@
           }"
         >
           <!--today-->
-          <router-link
+          <nuxt-link
             :to="`/date/${ formatDate(day.getFullYear(), day.getMonth() + 1, day.getDate())}`"
-          >{{ day.getDate() }}</router-link>
+          >{{ day.getDate() }}</nuxt-link>
         </span>
       </li>
     </ul>
@@ -58,16 +58,6 @@ export default {
       currentWeek: 1,
       days: []
     };
-  },
-  computed: {
-    // isEnLang() {
-    //   return this.$store.getters["global/isEnLang"];
-    // },
-    weeksText() {
-      return this.isEnLang
-        ? ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-        : ["一", "二", "三", "四", "五", "六", "七"];
-    }
   },
   methods: {
     initDate(current) {

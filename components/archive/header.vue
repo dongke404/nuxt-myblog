@@ -1,6 +1,7 @@
 <template>
   <div
     class="header-box"
+    :class="theme"
     :style="{
       'background-image': `url(${currentData.backgroundImg})`
     }"
@@ -8,13 +9,13 @@
     <div class="logo-box">
       <p class="logo">
         <transition name="module" mode="out-in">
-          <i  key="date" :class='`iconfont icon-${currentData.icon}`'></i>
+          <i key="date" :class="`iconfont icon-${currentData.icon}`"></i>
         </transition>
       </p>
     </div>
     <div class="title-box">
       <transition name="module" mode="out-in">
-        <h5  key="category-11" class="title">
+        <h5 key="category-11" class="title">
           <span>{{ currentData.text }}</span>
         </h5>
       </transition>
@@ -23,57 +24,43 @@
 </template>
 
 <script>
-import { routerMap} from "~/config/app.config"
+import { routerMap } from "~/config/app.config";
 export default {
   name: "ArticleListHeader",
   computed: {
-
-    // currentTag() {
-    //   return this.$store.state.tag.data.find(
-    //     tag => tag.slug === this.$route.params.tag_slug
-    //   );
-    // },
-    // currentTagIconClass() {
-    //   return this.getExtendsValue(this.currentTag, "icon") || "icon-tag";
-    // },
-
-    // currentCategoryIconClass() {
-    //   return (
-    //     this.getExtendsValue(this.currentCategory, "icon") || "icon-category"
-    //   );
-    // },
-    // currentBackgroundImage() {
-    //   const tagBg = this.getExtendsValue(this.currentTag, "background");
-    //   const cateBg = this.getExtendsValue(this.currentCategory, "background");
-    //   return tagBg || cateBg || getFileCDNUrl("/images/service.jpg");
-    // },
-    // currentBackgroundColor() {
-    //   const tagBg = this.getExtendsValue(this.currentTag, "bgcolor");
-    //   const cateBg = this.getExtendsValue(this.currentCategory, "bgcolor");
-    //   return tagBg || cateBg || null;
-    // },
-    // currentDate() {
-    //   return this.$route.params.date;
-    // },
-    currentData() {
-      return routerMap[this.$route.params.category_slug];
+    theme() {
+      return this.$store.state.global.theme;
     },
-    // isMobile() {
-    //   return this.$store.state.global.isMobile;
-    // }
-  },
-  mounted(){
-    console.log(routerMap)
+    currentTag() {
+      return this.$store.state.tag.data.find(
+        tag => tag.name === this.$route.params.tag_name
+      );
+    },
+    currentData() {
+      // console.log(this.$route);
+      if (this.$route.name === "category-category_slug") {
+        return routerMap.category[this.$route.params.category_slug];
+      }
+      if (this.$route.name === "search-keyword") {
+        routerMap.search.text = `搜索与  "${this.$route.params.keyword}"  相关的结果`;
+        return routerMap.search;
+      }
+      if (this.$route.name === "date-date") {
+        routerMap.date.text = `于  "${this.$route.params.date}"  发布的文章`;
+        return routerMap.date;
+      }
+      if (this.$route.name === "tag-tag_name") {
+        let data = {};
+        data.backgroundImg = this.currentTag.img;
+        data.icon = this.currentTag.icon;
+        data.text = this.currentTag.description;
+        return data;
+      }
+    },
+    isMobile() {
+      return this.$store.state.global.isMobile;
+    }
   }
-  // methods: {
-  //   getExtendsValue(target, key) {
-  //     if (!target || !target.extends.length) {
-  //       return null;
-  //     }
-  //     const targetExtend = target.extends.find(t => t.name === key);
-  //     return targetExtend ? targetExtend.value : null;
-  //   }
-  // }
 };
 </script>
 

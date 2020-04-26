@@ -49,7 +49,7 @@ export default {
   background-color: $module-bg;
   user-select: none;
 
-  // 过段时间再打开吧，闪屏太严重了
+  // 闪屏会严重
   // @include backdrop-blur();
 
   .header-container {

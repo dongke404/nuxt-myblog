@@ -1,11 +1,8 @@
 import Vue from 'vue'
-
-
+import {SortType} from "~/constants/system"
 export const ARTICLE_API_PATH = '/article'
-// export const LIKE_ARTICLE_API_PATH = '/like/article'
-import { isBrowser } from '~/environment'
-// import { fetchDelay } from '~/utils/delay'
-// import systemConstants from '~/constants/system'
+export const LIKE_ARTICLE_API_PATH = '/like/article'
+
 
 const getDefaultListData = () => {
   return {
@@ -43,6 +40,16 @@ export const mutations = {
     state.list.data.data.push(...action.data)
     state.list.data.pagination = action.pagination
   },
+
+
+  // 热门文章
+  updateHotListFetchig(state, action) {
+    state.hotList.fetching = action
+  },
+  updateHotListData(state, action) {
+    state.hotList.data = action
+  },
+
   // 文章详情
   updateDetailFetchig(state, action) {
     state.detail.fetching = action
@@ -50,9 +57,12 @@ export const mutations = {
   updateDetailData(state, action) {
     state.detail.data = action
   },
-  temptest(state, action) {
-    state.testdata = action
-  },
+
+  // 喜欢某篇文章
+  updateLikesIncrement(state) {
+    const article = state.detail.data
+    article && article.likes++
+  }
 }
 
 export const actions = {
@@ -77,7 +87,7 @@ export const actions = {
         isLoadMore
           ? commit('updateExistingListData', response)
           : commit('updateListData', response)
-        if (isLoadMore && isBrowser) {
+        if (isLoadMore && process.browser) {
           Vue.nextTick(() => {
             scrollTo({
               top: window.scrollY + window.innerHeight * 0.8,
@@ -89,9 +99,22 @@ export const actions = {
       .catch(error => commit('updateListFetchig', false))
   },
 
+  // 获取最热文章列表
+  fetchHotList({ commit }) {
+
+    commit('updateHotListFetchig', true)
+    return this.$axios
+      .$get(ARTICLE_API_PATH, { params: { cache: 1, sort: SortType.Hot } })
+      .then(response => {
+        console.log(response)
+        commit('updateHotListData', response)
+        commit('updateHotListFetchig', false)
+      })
+      .catch(error => commit('updateHotListFetchig', false))
+  },
+
   // 获取文章详情
   fetchDetail({ commit }, params = {}) {
-
     if (process.browser) {
       Vue.nextTick(() => {
         scrollTo(0, 300)
@@ -107,8 +130,15 @@ export const actions = {
       })
       .catch(error => {
         commit('updateDetailFetchig', false)
-
       })
   },
-
+  // 喜欢文章
+  fetchLikeArticle({ commit }, article_id) {
+    return this.$axios
+      .$post(LIKE_ARTICLE_API_PATH, { article_id })
+      .then(response => {
+        commit('updateLikesIncrement')
+        return Promise.resolve(response)
+      })
+  }
 }

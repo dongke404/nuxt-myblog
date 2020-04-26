@@ -18,8 +18,10 @@ export const actions = {
     // 初始化时的全局任务
     const initFetchAppData = [
       // 内容数据
+      store.dispatch('global/fetchFontcss'),
       store.dispatch('tag/fetchList'),
-      store.dispatch('category/fetchList')
+      store.dispatch('category/fetchList'),
+
     ]
 
     // 如果是非中文地区用户则设置为英文

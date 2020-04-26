@@ -430,4 +430,4 @@
 
 
 
-console.log(parseInt(9/2))
+console.log("1" instanceof Array )

@@ -26,14 +26,14 @@
           <a
             href
             class="sort-btn"
-            :class="{ actived: sortMode === constants.SortType.Desc }"
-            @click.stop.prevent="sortComemnts(constants.SortType.Desc)"
+            :class="{ actived: sortMode === SortType.Desc }"
+            @click.stop.prevent="sortComemnts(SortType.Desc)"
           >{{ $i18n.text.comment.new.value }}</a>
           <a
             href
             class="sort-btn"
-            :class="{ actived: sortMode === constants.SortType.Hot }"
-            @click.stop.prevent="sortComemnts(constants.SortType.Hot)"
+            :class="{ actived: sortMode === SortType.Hot }"
+            @click.stop.prevent="sortComemnts(SortType.Hot)"
           >{{ $i18n.text.comment.hot.value }}</a>
         </div>
       </div>
@@ -256,7 +256,6 @@
           </transition>
           <comment-pen
             ref="markdownInput"
-            v-model="draftContent"
             :enabled-preview-mode="previewMode"
             :disabled="isPostingComment || isFetching"
             :is-posting="isPostingComment"
@@ -274,7 +273,7 @@ import Vue from "vue";
 import { mapState } from "vuex";
 import { COMMENT_NUM, meta } from "~/config/app.config";
 import { getJSONStorageReader } from "~/utils/local-storage";
-import {StorageField,CommentPostType} from "~/constants/system";
+import { StorageField, CommentPostType, SortType } from "~/constants/system";
 import marked from "~/plugins/marked";
 import dayjs from "~/plugins/day";
 import CommentUa from "./ua";
@@ -282,9 +281,7 @@ import CommentPen from "./pen";
 import gravatar from "gravatar";
 
 const localUser = getJSONStorageReader(StorageField.User);
-const localHistoryLikes = getJSONStorageReader(
-  StorageField.UserLikeHistory
-);
+const localHistoryLikes = getJSONStorageReader(StorageField.UserLikeHistory);
 const emailRegex = /\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}/;
 // eslint-disable-next-line no-useless-escape
 const urlRegex = /^((https|http):\/\/)+[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&_~`@[\]\':+!]*([^<>\"\"])*$/;
@@ -300,10 +297,10 @@ export default {
       type: Boolean,
       default: false
     },
-    // likes: {
-    //   type: Number,
-    //   default: 0
-    // },
+    likes: {
+      type: Number,
+      default: 0
+    },
     postId: {
       type: Number,
       required: true
@@ -320,7 +317,6 @@ export default {
       // 评论排序
       sortMode: 1,
       // 编辑器相关
-      draftContent: "",
       previewMode: false,
       // 用户相关
       userCacheMode: false,
@@ -343,12 +339,14 @@ export default {
       comments: state => state.comment.data,
       isFetchingComment: state => state.comment.fetching,
       isPostingComment: state => state.comment.posting,
-      constants: state => state.global.constants,
       isMobile: state => state.global.isMobile,
       blacklist: state => state.global.appOption.data.blacklist
     }),
     isFetching() {
       return this.fetching || this.isFetchingComment;
+    },
+    SortType() {
+      return SortType;
     },
     pageNum() {
       return Math.ceil(this.comments.pagination.total / this.commentNum);
@@ -458,9 +456,6 @@ export default {
       this.user.gravatar = this.getGravatarUrlByEmail(this.user.email);
     },
     // 编辑器相关
-    clearCommentContent(content) {
-      this.draftContent = "";
-    },
     handleTogglePreviewMode() {
       this.previewMode = !this.previewMode;
     },
@@ -502,7 +497,7 @@ export default {
     },
     // 找到回复来源(从全部评论中找父级评论 ,缺点后面的评论显示不了第一页的，建议服务端组合好)
     findReplyParent(pid) {
-      console.log("找到回复来源");
+      //console.log("找到回复来源");
       const parent = this.comments.data.find(
         comment => comment.comment_id === pid
       );
@@ -565,15 +560,15 @@ export default {
       });
     },
     // 提交评论
-    submitComment() {
+    submitComment(value, setInputText) {
       if (!this.checkRule()) {
         return;
       }
-      if (!this.draftContent || !this.draftContent.replace(/\s/g, "")) {
+      if (!value || !value.replace(/\s/g, "")) {
         return alert(this.$i18n.text.comment.profile.content.value + "?");
       }
-      const lineOverflow = this.draftContent.split("\n").length > 36;
-      const lengthOverflow = this.draftContent.length > 2000;
+      const lineOverflow = value.split("\n").length > 36;
+      const lengthOverflow = value.length > 2000;
       if (lineOverflow || lengthOverflow) {
         return alert(this.$i18n.text.comment.profile.contenterr.value);
       }
@@ -581,8 +576,7 @@ export default {
       const { mails, keywords } = this.blacklist;
       if (
         mails.includes(this.user.email) ||
-        (keywords.length &&
-          eval(`/${keywords.join("|")}/ig`).test(this.draftContent))
+        (keywords.length && eval(`/${keywords.join("|")}/ig`).test(value))
       ) {
         alert(this.$i18n.text.comment.profile.submiterr.value);
         console.warn(
@@ -598,7 +592,7 @@ export default {
           pid: this.pid,
           post_id: this.postId,
           author: this.user,
-          content: this.draftContent,
+          content: value,
           agent: navigator.userAgent
         })
         .then(data => {
@@ -607,7 +601,7 @@ export default {
           this.previewMode = false;
           this.userCacheMode = true;
           this.cancelCommentReply();
-          this.clearCommentContent();
+          setInputText("");
           localUser.set(this.user);
         })
         .catch(error => {

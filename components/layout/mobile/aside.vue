@@ -2,7 +2,7 @@
   <aside class="aside" :class="{ open: open }">
     <div class="aside-user">
       <div class="avatar">
-        <img :src="gravatar" alt="Surmon" draggable="false">
+        <img :src="gravatar" alt="dongke" draggable="false">
       </div>
       <div class="profile">
         <h3 class="name">dongkirk</h3>
@@ -64,7 +64,7 @@
 <script>
   import Vue from 'vue'
   import appConfig from '~/config/app.config'
-  
+
 
   export default Vue.extend({
     name: 'MobileAside',

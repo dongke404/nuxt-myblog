@@ -22,7 +22,7 @@
             <span>{{ article.date}}</span>
           </span>
           <span class="views">
-            <i class="iconfont icon-hot"></i>
+            <i class="iconfont icon-view"></i>
             <span>{{ article.view_num }}</span>
           </span>
           <span class="comments">
@@ -48,9 +48,9 @@
 <script>
 import { mapState } from "vuex";
 import i18nConfig from "~/config/i18n.config";
-// import { getJSONStorageReader } from "~/utils/local-storage";
-import { OriginState } from "~/constants/system";
-
+import { getJSONStorageReader } from "~/utils/local-storage";
+import { OriginState,StorageField } from "~/constants/system";
+const localHistoryLikes = getJSONStorageReader(StorageField.UserLikeHistory)
 export default {
   name: "ArticleListItem",
   props: {
@@ -58,12 +58,12 @@ export default {
   },
   data() {
     return {
-      isLiked: true,
+      isLiked: false,
       i18nConfig: i18nConfig
     };
   },
   computed: {
-    ...mapState("global", ["isMobile"]),
+    ...mapState("global", ["isMobile","language"]),
     originText() {
       if (!this.article.origin) {
         return this.$i18n.text.origin.original.value;
@@ -89,7 +89,7 @@ export default {
     }
   },
   mounted() {
-    // this.isLiked = localHistoryLikes.get().pages.includes(this.article.id);
+      this.isLiked = localHistoryLikes.get()?.pages.includes(this.article.article_id)
   }
 };
 </script>

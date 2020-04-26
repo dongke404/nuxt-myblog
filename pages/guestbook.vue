@@ -30,7 +30,7 @@ export default {
   computed: {
     siteLikes() {
       const appOption = this.$store.state.global.appOption.data;
-      return appOption ? appOption.meta.likes : 0;
+      return appOption ? appOption.likes : 0;
     },
     headImg() {
       return routerMap.guestbook.backgroundImg;

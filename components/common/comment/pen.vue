@@ -5,8 +5,8 @@
         ref="input"
         class="markdown-input"
         :contenteditable="!disabled"
-        :placeholder="'神评论等你来'"
-        @keyup="handleInputChange"
+        :placeholder="$i18n.text.comment.placeholder.value"
+
       />
       <transition name="module">
         <div v-if="enabledPreviewMode" class="markdown-preview" v-html="previewContent" />
@@ -53,16 +53,11 @@
 
 <script>
 import { mapState } from "vuex";
-import { isBrowser } from "~/environment";
 import marked from "~/plugins/marked";
 
 export default {
   name: "CommentPen",
   props: {
-    value: {
-      type: String,
-      default: ""
-    },
     disabled: {
       type: Boolean,
       default: false
@@ -80,7 +75,7 @@ export default {
   },
   computed: {
     previewContent() {
-      return this.enabledPreviewMode ? marked(this.content) : null;
+      return this.enabledPreviewMode ? marked(this.getInputText()) : null;
     }
   },
   methods: {
@@ -109,14 +104,12 @@ export default {
             visit(node);
             return;
           }
-
           length += isNewLine ? 1 : node.textContent.length;
           if (length >= position) {
             if (abort) {
               visit(node);
               return;
             }
-
             abort = true;
             const selection = document.getSelection();
             const range = document.createRange();
@@ -129,7 +122,6 @@ export default {
           }
         }
       };
-
       visit(input);
     },
     getInputText() {
@@ -155,7 +147,7 @@ export default {
           ? start
           : start + selectedText + end;
         const newText = currentText.replace(selectedText, newSelectedText);
-        console.log("选中插入", newText);
+        // console.log("选中插入", newText);
         this.setInputText(newText);
         this.focusPosition(
           newText.indexOf(newSelectedText) + newSelectedText.length - 1
@@ -178,20 +170,18 @@ export default {
             newInsertText,
             currentText.slice(startPoint)
           ];
-          console.log("光标插入", startPoint, newTexts);
+          // console.log("光标插入", startPoint, newTexts);
           this.setInputText(newTexts.join(""));
           this.focusPosition(newTexts[0].length + newTexts[1].length - 1);
         } else {
           // 否则末端追加内容，并定位到最后一个字符
           const newText = currentText + newInsertText;
-          console.log("尾部插入", newText);
+          // console.log("尾部插入", newText);
           this.setInputText(newText);
           this.focusPosition(newText.length - 1);
           this.$refs.input.scrollTop = this.$refs.input.scrollHeight;
         }
       }
-
-      this.handleInputChange();
     },
     insertEmoji(emoji) {
       this.insertContent([` ${emoji} `]);
@@ -208,27 +198,14 @@ export default {
     handleTogglePreviewMode() {
       this.$emit("togglePreviewMode");
     },
-    handleInputChange() {
-      const text = this.getInputText();
-      if (text !== this.content) {
-        this.content = text;
-        //这个input绑定v-model
-        this.$emit("input", text);
-      }
-    },
     handleSubmit(event) {
       event.preventDefault();
-      this.$emit("submit", this.content);
+      let p=Promise.resolve(this.getInputText())
+      p.then(value=>{
+        this.$emit("submit", value,this.setInputText);
+      })
     }
   },
-  watch: {
-    value(newContent) {
-      if (newContent !== this.content) {
-        this.setInputText(newContent);
-        this.content = newContent;
-      }
-    }
-  }
 };
 </script>
 

@@ -1,7 +1,6 @@
 /**
  * @file 骨架屏模块 / ES module
  * @module components/skeleton
- * @author Surmon <https://github.com/surmon-china>
  */
 
 import SkeletonBase from './base'

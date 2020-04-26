@@ -17,7 +17,8 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'styleSheet', type: 'text/css', href: '//at.alicdn.com/t/font_1755605_61dxxq5374d.css' }
+      { rel: 'styleSheet', type: 'text/css', href: '//at.alicdn.com/t/font_1755605_6ycwh20fa3n.css' }
+
     ]
   },
   /*
@@ -81,5 +82,6 @@ export default {
     { src: '~/plugins/swiper', mode: 'client' },
     { src: '~/plugins/popup', mode: 'client' },
     { src: '~/plugins/day', mode: 'client' },
+    { src: '~/plugins/canvas-nest', mode: 'client' },
   ]
 }

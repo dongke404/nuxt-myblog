@@ -45,7 +45,7 @@
 <script>
 import ListItem from "./item.vue";
 import ListHeader from "./header.vue";
-import { isIndexRoute } from "~/utils/route-validator";
+import {Route} from "~/constants/system.js"
 
 export default {
   name: "ArticleList",
@@ -68,7 +68,7 @@ export default {
       return hasArticles ? current_page < total_page : false;
     },
     isIndexRoute() {
-      return isIndexRoute(this.$route.name);
+      return this.$route.name===Route.Index;
     }
     // btnColorBlockLeft() {
     //   return this.isMobile ? 60 : 75;

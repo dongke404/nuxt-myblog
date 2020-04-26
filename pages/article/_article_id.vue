@@ -1,7 +1,7 @@
 <template>
   <article class="article-page">
     <div ref="detail" class="detail">
-      <transition name="module">
+      <transition name="module" mode="out-in">
         <div v-if="!isFetching" class="oirigin" :class="originClass">
           <span>{{originText }}</span>
         </div>
@@ -19,58 +19,63 @@
     </div>
     <div class="share">
       <transition name="module" mode="out-in">
-        <transition name="module" mode="out-in">
-          <div v-if="isFetching" key="skeleton" class="skeleton">
-            <skeleton-base
-              v-for="item in (isMobile ? 3 : 10)"
-              :key="item"
-              :style="{
+        <div v-if="isFetching" key="skeleton" class="skeleton">
+          <skeleton-base
+            v-for="item in (isMobile ? 3 : 10)"
+            :key="item"
+            :style="{
               width: `calc((100% - (1em * ${isMobile ? 2 : 9})) / ${isMobile ? 3 : 10})`
             }"
-              :radius="0"
-            />
-          </div>
-          <share-box v-else key="share" :class="{ mobile: isMobile }" />
-        </transition>
+            :radius="0"
+          />
+        </div>
+        <share-box v-else key="share" :class="{ mobile: isMobile }" />
       </transition>
     </div>
     <transition name="module" mode="out-in">
-      <div v-if="isFetching" key="skeleton" class="metas">
-        <skeleton-paragraph :align="true" :lines="4" line-height="1.2em" />
-      </div>
-      <div key="metas" class="metas">
-        <p class="item">
-          <span>本文于</span>
-          <span>&nbsp;</span>
-          <nuxt-link :title="article.date" :to="article.date">
-            <span>{{article.date }}</span>
-          </nuxt-link>
-          <span>&nbsp;发布在&nbsp;</span>
-          <nuxt-link :to="`/category/${article.category}`" :title="article.category">
-            <span>{{$i18n.nav[article.category].value }}</span>
-          </nuxt-link>
-
-          <span>&nbsp;分类下，当前已被围观&nbsp;</span>
-          <span>{{ article.view_num || 0 }}</span>
-          <span>&nbsp;次</span>
-        </p>
-        <p class="item">
-          <span class="title">{{'相关标签：' }}</span>
-
-          <span></span>
-        </p>
-        <p class="item">
-          <span class="title">{{ '永久地址：' }}</span>
-          <span class="site-url">{{ "url" }}</span>
-        </p>
-        <div class="item">
-          <span class="title">{{ '版权声明：' }}</span>
-          <span>
-            <span>自由转载-署名-非商业性使用</span>
-            <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-          </span>
+      <template>
+        <div v-if="isFetching" key="skeleton" class="metas">
+          <skeleton-paragraph :align="true" :lines="4" line-height="1.2em" />
         </div>
-      </div>
+        <div v-else key="metas" class="metas">
+          <p class="item">
+            <span>{{$i18n.metas.text1.value}}</span>
+            <span>&nbsp;</span>
+            <nuxt-link :title="article.date" :to="article.date">
+              <span>{{article.date }}</span>
+            </nuxt-link>
+            <span>&nbsp;{{$i18n.metas.text2.value}}&nbsp;</span>
+
+            <nuxt-link :to="`/category/${article.category}`" :title="article.category">
+              <span>{{$i18n.nav[article.category].value }}</span>
+            </nuxt-link>
+            <span>&nbsp;{{$i18n.metas.text3.value}}&nbsp;</span>
+            <span>{{ article.view_num || 0 }}</span>
+            <span>&nbsp;{{$i18n.metas.text4.value}}</span>
+          </p>
+          <p class="item">
+            <span>{{ $i18n.metas.rlttag.value+": "}}</span>
+            <nuxt-link
+              v-for="tag in article.tags"
+              :key="tag"
+              :to="`/tag/${tag}`"
+              :title="tag.description || tag.name"
+            >
+              <span class="title">&nbsp;&nbsp;&nbsp;{{tag}}&nbsp;</span>
+            </nuxt-link>
+          </p>
+          <p class="item">
+            <span class="title">{{ $i18n.metas.address.value }}</span>
+            <span class="site-url">{{ "url" }}</span>
+          </p>
+          <div class="item">
+            <span class="title">{{ $i18n.metas.copyright.value+'：' }}</span>
+            <span>
+              <span>{{$i18n.metas.copyright1.value}}</span>
+            </span>
+          </div>
+        </div>
+      </template>
     </transition>
     <transition name="module" mode="out-in">
       <div v-if="isFetching" key="skeleton" class="related">
@@ -108,7 +113,7 @@
       <comment-box
         :fetching="isFetching"
         :post-id="routeArticleId"
-        :likes="article.meta && article.meta.likes"
+        :likes="article && article.likes"
       />
     </div>
   </article>
@@ -120,6 +125,7 @@ import { OriginState } from "~/constants/system";
 import lozad from "~/plugins/lozad";
 import marked from "~/plugins/marked";
 import ShareBox from "~/components/widget/share";
+import Vue from "vue";
 
 export default {
   name: "ArticleDetail",
@@ -188,6 +194,7 @@ export default {
       isFetching: state => state.article.detail.fetching,
       isMobile: state => state.global.isMobile
     }),
+
     originText() {
       if (!this.article.origin) {
         return this.$i18n.text.origin.original.value;

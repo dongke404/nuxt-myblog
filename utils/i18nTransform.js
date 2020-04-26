@@ -11,7 +11,7 @@ function i18nTransfer(i18nConfig, language) {
     for (const key in obj) {
       if (obj.hasOwnProperty(key)) {
         const element = obj[key];
-        if (typeof (element) === "object") {
+        if (typeof (element) === "object" && !(element instanceof Array) ) {
           newobj[key] = {}
           getdata(element, newobj[key])
         } else {

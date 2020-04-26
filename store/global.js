@@ -1,30 +1,26 @@
 /**
  * @file 全局设置数据状态 / ES module
  * @module store/option
- * @author Surmon <https://github.com/surmon-china>
+
  */
 import i18nConfig from '~/config/i18n.config'
-import stateConstants from '~/constants/state'
+// import stateConstants from '~/constants/state'
 import systemConstants from '~/constants/system'
 import { getStorageReader } from '~/utils/local-storage'
 
 
 
 const localThemeReader = getStorageReader(systemConstants.StorageField.Theme)
-if (process.browser) {
-  var defaultTheme = localThemeReader.get()
-}
+// if (process.browser) {
+//   var defaultTheme = localThemeReader.get()
+// }
 
 export const state = () => ({
   // 拿本地设置过得的主题作为默认
-  theme: defaultTheme || systemConstants.Theme.Default,
+  theme:systemConstants.Theme.Default,
 
-  // 同构常量
-  constants: stateConstants,
-
-  // 图片格式，见 OSS: https://oss.console.aliyun.com/bucket/oss-cn-hangzhou/surmon-static/process/img
-  // imageExt: systemConstants.ImageExt.WebP,
-
+  // fontcss
+  fontcss:"",
   // ua
   userAgent: '',
 
@@ -77,13 +73,13 @@ export const mutations = {
   resetTheme(state) {
     const historyTheme = localThemeReader.get()
     if (historyTheme) {
-      const theme =
-        historyTheme === systemConstants.Theme.Dark
-          ? systemConstants.Theme.Dark
-          : systemConstants.Theme.Default
-      state.theme = theme
-      localThemeReader.set(theme)
+      state.theme = historyTheme
     }
+  },
+
+  // 设置fontcss
+  updateFontcss(state, action) {
+    state.fontcss = action.data
   },
 
   // 设置UA
@@ -159,11 +155,17 @@ export const mutations = {
     state.appOption.data = action.data
   },
   updateLikesIncrement(state) {
-    state.appOption.data.meta.likes++
+    state.appOption.data.likes++
   }
 }
 
 export const actions = {
+  // 获取font的地址
+  fetchFontcss({ commit }) {
+    return this.$axios
+      .$get('/fontcss')
+      .then(response => commit('updateFontcss', response))
+  },
   // 获取博主资料
   fetchAdminInfo({ commit }) {
     return this.$axios

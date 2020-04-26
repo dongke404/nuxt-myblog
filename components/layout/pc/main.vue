@@ -1,9 +1,17 @@
 <template>
-  <div id="app-main">
+  <div id="app-main" >
+    <Link rel='styleSheet' type='text/css' :href='fontcss' />
+    <client-only>
+      <figure class="widget">
+        <background />
+        <wallflower />
+        <language />
+        <theme-switch />
+        <back-to-top />
+        <share-box class="sidebar-share" />
+      </figure>
+    </client-only>
     <Header />
-    <Background />
-    <language />
-    <theme-switch />
     <main id="main" class="main-container">
       <nav-view />
       <div id="main-content" class="main-content">
@@ -17,16 +25,22 @@
 
 <script>
 import Background from "../../widget/background.vue";
+import Wallflower from "~/components/widget/clickEffect/garden";
 import NavView from "./nav";
-import Header from "@/components/layout/pc/header";
+import Header from "~/components/layout/pc/header";
 import AsideView from "./aside/main";
 import Language from "~/components/widget/language";
 import ThemeSwitch from "~/components/widget/theme";
-import FooterView from './footer'
+import FooterView from "./footer";
+import BackToTop from "../../widget/back2top";
+import ShareBox from "~/components/widget/share";
 
 export default {
   name: "PcMain",
   components: {
+    Wallflower,
+    ShareBox,
+    BackToTop,
     Background,
     NavView,
     Header,
@@ -35,12 +49,16 @@ export default {
     ThemeSwitch,
     FooterView
   },
+  computed: {
+    fontcss() {
+      console.log("33333333", this.$store.state.global.fontcss.fontcss);
+      return this.$store.state.global.fontcss.fontcss;
+    }
+  },
+  created() {},
   mounted() {
     if (process.browser) {
-      // this.autoEggWhenTabActive();
       this.$store.commit("global/resetTheme");
-      // this.$root.$musicPlayer = musicPlayer;
-      // musicPlayer.ready || musicPlayer.init();
     }
   }
 };

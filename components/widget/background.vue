@@ -1,12 +1,18 @@
 <template>
   <div id="background">
-    <div class="background-image " ></div>
+
+    <client-only>
+       <div class="background-image " >
+       </div>
+       <vue-canvas-nest :config="{color:'244,62,6',count: 200,opacity:1}"></vue-canvas-nest>
+
+    </client-only>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Background",
+  name: "Background"
 };
 </script>
 
@@ -26,7 +32,6 @@ export default {
     height: 100%;
     opacity: 0.3;
     background: url("https://surmon.me/images/background.png");
-
     &.dark {
       opacity: 0.2;
     }

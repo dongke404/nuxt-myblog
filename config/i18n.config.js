@@ -1,7 +1,7 @@
 /**
  * @file I18n config / ES module
  * @module i18n.config
- * @author Surmon <https://github.com/surmon-china>
+
  */
 
 export default {
@@ -76,6 +76,40 @@ export default {
         zh: '旷日积晷',
         en: 'sitemap.xml'
       }
+    },
+    metas:{
+      text1:{
+        zh: '本文于',
+        en: 'Article at'
+      },
+      text2:{
+        zh: '发布在',
+        en: 'Published'
+      },
+      text3:{
+        zh: '分类下，当前已被围观',
+        en: 'Category,viewed'
+      },
+      text4:{
+        zh: '次',
+        en: 'times'
+      },
+      rlttag:{
+        zh: '相关标签',
+        en: 'Relevant tags'
+      },
+      address:{
+        zh: '永久地址',
+        en: 'Address'
+      },
+      copyright:{
+        zh: '版权声明',
+        en: 'Copyright Notice'
+      },
+      copyright1:{
+        zh: '自由转载-署名-非商业性使用',
+        en: 'Freely reproduced for non-commercial use'
+      },
     },
     text: {
       empty: {
@@ -256,6 +290,7 @@ export default {
           en: 'no more'
         }
       },
+
       page: {
         name: {
           zh: '黄卷青灯',
@@ -375,6 +410,24 @@ export default {
           zh: '发射中...',
           en: 'publishing'
         }
+      }
+    },
+    calendar: {
+      year: {
+        zh: '年',
+        en: 'Y'
+      },
+      month: {
+        zh: '月',
+        en: 'M'
+      },
+      day: {
+        zh: '日',
+        en: 'D'
+      },
+      weeksText: {
+        en: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+        zh: ["一", "二", "三", "四", "五", "六", "七"]
       }
     }
   }
