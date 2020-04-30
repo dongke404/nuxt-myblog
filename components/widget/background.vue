@@ -1,11 +1,8 @@
 <template>
   <div id="background">
-
     <client-only>
-       <div class="background-image " >
-       </div>
-       <vue-canvas-nest :config="{color:'244,62,6',count: 200,opacity:1}"></vue-canvas-nest>
-
+      <div class="background-image"></div>
+      <vue-canvas-nest :config="{color:'244,62,6',count: 99,opacity:0.7}"></vue-canvas-nest>
     </client-only>
   </div>
 </template>

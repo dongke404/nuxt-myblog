@@ -1,5 +1,5 @@
 <template>
-  <div id="comment-box" class="comment-box">
+  <div id="comment-box" class="comment-box" :class="{ mobile: isMobile }">
     <transition name="module" mode="out-in">
       <div v-if="fetching" key="skeleton" class="tools">
         <div class="total-skeleton">
@@ -19,7 +19,7 @@
           <a href class="like" :class="{ liked: isLikedPage }" @click.stop.prevent="likePage">
             <i class="iconfont icon-like" />
             <strong>{{ likes || 0 }}</strong>
-            <span>{{ (isMobile && !isEnLang) ? '赞' : $i18n.text.comment.like.value }}</span>
+            <span>{{ (isMobile ) ? '赞' : $i18n.text.comment.like.value }}</span>
           </a>
         </div>
         <div class="sort">

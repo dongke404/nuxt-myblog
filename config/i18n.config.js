@@ -36,6 +36,10 @@ export default {
         zh: '如梦令',
         en: 'code'
       },
+      timeline:{
+        zh: '岁月神偷',
+        en: 'timeline'
+      },
       photo: {
         zh: '琉璃镜',
         en: 'photo'

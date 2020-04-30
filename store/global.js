@@ -17,10 +17,10 @@ const localThemeReader = getStorageReader(systemConstants.StorageField.Theme)
 
 export const state = () => ({
   // 拿本地设置过得的主题作为默认
-  theme:systemConstants.Theme.Default,
+  theme: systemConstants.Theme.Default,
 
   // fontcss
-  fontcss:"",
+  fontcss: "",
   // ua
   userAgent: '',
 
@@ -40,14 +40,10 @@ export const state = () => ({
   // 移动端侧边栏
   onMobileSidebar: false,
 
-  // 是否开启弹幕
-  onBarrage: false,
 
   // 开启轨迹地图
   onMyMap: false,
 
-  // 山河入梦
-  onWallpaper: false,
 
   // 服务端博主信息
   adminInfo: {},
@@ -167,11 +163,11 @@ export const actions = {
       .then(response => commit('updateFontcss', response))
   },
   // 获取博主资料
-  fetchAdminInfo({ commit }) {
-    return this.$axios
-      .$get('/auth/admin')
-      .then(response => commit('updateAdminInfo', response))
-  },
+  // fetchAdminInfo({ commit }) {
+  //   return this.$axios
+  //     .$get('/auth/admin')
+  //     .then(response => commit('updateAdminInfo', response))
+  // },
 
   // 获取全局配置
   fetchAppOption({ commit, state }, force = false) {

@@ -106,7 +106,6 @@ export const actions = {
     return this.$axios
       .$get(ARTICLE_API_PATH, { params: { cache: 1, sort: SortType.Hot } })
       .then(response => {
-        console.log(response)
         commit('updateHotListData', response)
         commit('updateHotListFetchig', false)
       })

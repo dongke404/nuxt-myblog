@@ -40,12 +40,11 @@ export const Route = {
   ArticleDetail: 'article-article_id',
   SearchArchive: 'search-keyword',
   Guestbook: 'guestbook',
-  Service: 'service',
-  App: 'app',
-  Music: 'music',
   About: 'about',
   Vlog: 'vlog',
-  Sitemap: 'sitemap'
+  Timeline:'timeline',
+  Photo:"photo-photo_album"
+
 }
 
 export const ImageExt = {

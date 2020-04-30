@@ -14,7 +14,7 @@ marked.setOptions({
   tables: true,
   breaks: false,
   pedantic: false,
-  sanitize: false,
+  // sanitize: false,
   smartLists: true,
   smartypants: false,
   highlight(code) {
@@ -125,7 +125,7 @@ renderer.image = imageRender
 export default (content, parseHtml = false) => {
   renderer.text = text => text
   // 如果是解析评论，则不解析 html 内容
-  marked.setOptions({ sanitize: !parseHtml })
+  // marked.setOptions({ sanitize: !parseHtml })
   if (!parseHtml) {
     renderer.image = imageRender1
   }

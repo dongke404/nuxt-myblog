@@ -1,9 +1,16 @@
 <template>
-  <div class="articles">
+  <div class="articles" :class="{ mobile: isMobile }">
     <!-- 非首页列表头 -->
     <div v-if="!isIndexRoute" class="article-list-header">
       <list-header />
     </div>
+    <!-- 广告 -->
+    <!-- <transition name="module">
+      <component
+        :is="isMobile ? 'adsense-archive-mobile' : 'adsense-archive'"
+        class="article-list-mammon"
+      />
+    </transition>-->
     <!-- 列表 -->
     <div class="article-list">
       <transition name="module" mode="out-in">
@@ -14,8 +21,8 @@
           tag="div"
         >
           <list-item
-            v-for="(articleItem,index) in article.data.data"
-            :key="index"
+            v-for="(articleItem) in article.data.data"
+            :key="articleItem.article_id"
             :article="articleItem"
             @click.native="toDetail(articleItem)"
           />
@@ -45,7 +52,7 @@
 <script>
 import ListItem from "./item.vue";
 import ListHeader from "./header.vue";
-import {Route} from "~/constants/system.js"
+import { Route } from "~/constants/system.js";
 
 export default {
   name: "ArticleList",
@@ -59,25 +66,22 @@ export default {
     }
   },
   computed: {
-    // isMobile() {
-    //   return this.$store.state.global.isMobile;
-    // },
+    isMobile() {
+      return this.$store.state.global.isMobile;
+    },
     isCanLoadMore() {
       const { current_page, total_page } = this.article.data.pagination;
       const hasArticles = this.article.data.pagination;
       return hasArticles ? current_page < total_page : false;
     },
     isIndexRoute() {
-      return this.$route.name===Route.Index;
+      return this.$route.name === Route.Index;
     }
-    // btnColorBlockLeft() {
-    //   return this.isMobile ? 60 : 75;
-    // }
   },
   methods: {
     toDetail(article) {
       if (this.isMobile) {
-        this.$router.push(`/article/${article.id}`);
+        this.$router.push(`/article/${article.article_id}`);
       }
     }
   }

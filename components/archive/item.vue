@@ -1,7 +1,7 @@
 <template>
-  <div class="article-list-item">
+  <div class="article-list-item" :class="{ mobile: isMobile }">
     <div class="item-content">
-      <div class="item-thumb">
+      <div v-if="!isMobile" class="item-thumb">
         <nuxt-link :to="`/article/${article.article_id}`">
           <span class="item-oirigin" :class="originClass">{{ originText }}</span>
           <img class="item-thumb-img" :src="article.imgUrl" />
@@ -23,17 +23,17 @@
           </span>
           <span class="views">
             <i class="iconfont icon-view"></i>
-            <span>{{ article.view_num }}</span>
+            <span>{{ article.view_num ||0 }}</span>
           </span>
           <span class="comments">
             <i class="iconfont icon-comment"></i>
-            <span>{{ article.cmt_num }}</span>
+            <span>{{ article.cmt_num ||0 }}</span>
           </span>
           <span class="likes">
             <i class="iconfont icon-like" :class="{ liked: isLiked }"></i>
-            <span>{{ article.likes }}</span>
+            <span>{{ article.likes ||0}}</span>
           </span>
-          <span class="categories">
+          <span v-if="!isMobile" class="categories">
             <i class="iconfont icon-category"></i>
             <nuxt-link :to="`/category/${article.category}`">
               <span>{{ i18nConfig.data.nav[article.category][language]}}</span>
@@ -49,8 +49,8 @@
 import { mapState } from "vuex";
 import i18nConfig from "~/config/i18n.config";
 import { getJSONStorageReader } from "~/utils/local-storage";
-import { OriginState,StorageField } from "~/constants/system";
-const localHistoryLikes = getJSONStorageReader(StorageField.UserLikeHistory)
+import { OriginState, StorageField } from "~/constants/system";
+const localHistoryLikes = getJSONStorageReader(StorageField.UserLikeHistory);
 export default {
   name: "ArticleListItem",
   props: {
@@ -63,7 +63,7 @@ export default {
     };
   },
   computed: {
-    ...mapState("global", ["isMobile","language"]),
+    ...mapState("global", ["isMobile", "language"]),
     originText() {
       if (!this.article.origin) {
         return this.$i18n.text.origin.original.value;
@@ -89,7 +89,9 @@ export default {
     }
   },
   mounted() {
-      this.isLiked = localHistoryLikes.get()?.pages.includes(this.article.article_id)
+    this.isLiked = localHistoryLikes
+      .get()
+      ?.pages.includes(this.article.article_id);
   }
 };
 </script>

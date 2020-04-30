@@ -430,4 +430,10 @@
 
 
 
-console.log("1" instanceof Array )
+// console.log(parseInt(Math.random() * 3))
+let temp=parseInt(Math.random()*(1000-100+1)+100,10);
+console.log(temp)
+
+
+
+

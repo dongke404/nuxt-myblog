@@ -2,6 +2,14 @@
   <div id="toolbox">
     <div class="container">
       <div class="tools">
+        <button
+          v-if="isArticlePage"
+          class="to-page-top"
+          :title="$i18n.text.article.fullcolread.value"
+          @click="handleSetFullColumn"
+        >
+          <i class="iconfont icon-fullcolumn" />
+        </button>
         <button class="to-page-top" :title="$i18n.text.totop.value" @click="totop">
           <i class="iconfont icon-totop" />
         </button>
@@ -14,8 +22,17 @@
 </template>
 
 <script>
+import { Route } from "~/constants/system";
 export default {
-  name: "BackToTop",
+  name: "SmallTool",
+  computed: {
+    isArticlePage() {
+      return this.$route.name === Route.ArticleDetail;
+    },
+    isThreeColumns() {
+      return this.$store.state.global.isThreeColumns;
+    }
+  },
   methods: {
     totop() {
       scrollTo({
@@ -28,6 +45,13 @@ export default {
         top: document.body.scrollHeight,
         behavior: "smooth"
       });
+    },
+    handleSetFullColumn() {
+      if (this.isThreeColumns) {
+        this.$store.commit("global/updateThreeColumnsState", false);
+      } else {
+        this.$store.commit("global/updateThreeColumnsState", true);
+      }
     }
   }
 };

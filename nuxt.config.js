@@ -12,12 +12,13 @@ export default {
     title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      // { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1.0, user-scalable=no,minimum-scale:1, maximum-scale:1' },
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'styleSheet', type: 'text/css', href: '//at.alicdn.com/t/font_1755605_6ycwh20fa3n.css' }
+      { rel: 'styleSheet', type: 'text/css', href: '//at.alicdn.com/t/font_1755605_yxo5r8b04oh.css' }
 
     ]
   },
@@ -29,7 +30,6 @@ export default {
   ** Global CSS
   */
   css: [
-    '~assets/styles/iconfont.css',
     '~assets/styles/app.scss',
     'swiper/css/swiper.css',
     'highlight.js/styles/night-owl.css'
@@ -69,10 +69,10 @@ export default {
     }
   },
   router: {
-    // middleware: ['change-page-col'],
+
     //可设置当前路由按钮的class
     linkActiveClass: 'link-active',
-    middleware: 'test1'
+    middleware: ['change-page-col']
   },
   plugins: [
     { src: '~/plugins/marked' },
@@ -83,5 +83,7 @@ export default {
     { src: '~/plugins/popup', mode: 'client' },
     { src: '~/plugins/day', mode: 'client' },
     { src: '~/plugins/canvas-nest', mode: 'client' },
+    { src: "~/plugins/timeline.js", mode: 'client' },
+    { src: "~/plugins/waterfall.js", mode: 'client' },
   ]
 }

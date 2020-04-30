@@ -2,7 +2,7 @@
   <div class="index-page">
     <carrousel :article="article" />
     <announcement :announcement="announcement" />
-    <article-list  :article="article"  @loadmore="loadmoreArticle" />
+    <article-list :article="article" @loadmore="loadmoreArticle" />
   </div>
 </template>
 
@@ -33,13 +33,12 @@ export default {
     nextPageParams() {
       return {
         page: this.article.data.pagination.current_page + 1
-      }
+      };
     }
   },
   methods: {
     loadmoreArticle() {
-
-      this.$store.dispatch('article/fetchList', this.nextPageParams)
+      this.$store.dispatch("article/fetchList", this.nextPageParams);
     }
   }
 };

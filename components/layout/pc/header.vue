@@ -1,39 +1,106 @@
 <template>
-  <header id="header" class="header"
-      >
+  <header id="header" class="header">
     <div class="header-container container">
       <div class="header-header">
         <div class="header-logo">名字名字</div>
         <span class="header-slogan">个性签名</span>
       </div>
       <div class="header-player">
-        <client-only>
-          <Aplayer
-            :music="{title: 'secret base~君がくれたもの~',artist: 'Silent Siren',
-            src: 'https://music.163.com/song/media/outer/url?id=493735012'}"
-          ></Aplayer>
-        </client-only>
+        <audio
+          ref="audio"
+          :src="currMusic.url"
+          autoplay
+          name="media"
+          :key="currMusic.url"
+          @ended="playNext"
+          @error="error"
+        ></audio>
+      </div>
+      <div class="panel">
+        <div class="button">
+          <button @click="playPre">
+            <i class="iconfont icon-music-prev"></i>
+          </button>
+          <button @click="playOrpluse">
+            <i
+              class="iconfont"
+              :class="{'icon-music-play':ispaused,
+            'icon-music-pause':!ispaused
+             }"
+            ></i>
+          </button>
+          <button @click="playNext">
+            <i class="iconfont icon-music-next"></i>
+          </button>
+        </div>
+        <div
+          class="song"
+          :title="currMusic.name"
+        >歌名:{{currMusic.name}}&nbsp;&nbsp;歌手:{{currMusic.artist}}</div>
       </div>
     </div>
-    <div class="pre-load"></div>
   </header>
 </template>
 
 <script>
-import Aplayer from "vue-aplayer";
-
 export default {
   name: "PcHeader",
-
-  components: {
-    Aplayer
-  },
   data() {
-    return {};
+    return {
+      ispaused: false,
+      currIndex: 0
+    };
   },
-  mounted() {},
   computed: {
+    audio() {
+      return this.$store.state.music.data
+        .map(item => {
+          let res = {};
+          res.name = item.name;
+          res.artist = item.ar[0].name;
+          res.url = `https://music.163.com/song/media/outer/url?id=${item.id}`;
+          return res;
+        })
+        .sort(function() {
+          return Math.random() > 0.5 ? -1 : 1;
+        });
+    },
+    currMusic() {
+      return this.audio[this.currIndex];
+    },
+    mLength() {
+      console.log(this.audio.length);
+      return this.audio.length;
+    }
+  },
+  methods: {
+    playPre() {
+      if (!this.currIndex) {
+        this.currIndex = this.mLength - 1;
+      } else {
+        this.currIndex -= 1;
+      }
+    },
+    playOrpluse() {
+      if (this.$refs.audio.paused) {
+        this.$refs.audio.play();
+        this.ispaused = false;
+      } else {
+        this.$refs.audio.pause();
+        this.ispaused = true;
+      }
+    },
+    playNext() {
+      if (this.currIndex === this.mLength - 1) {
+        this.currIndex = 0;
+      } else {
+        this.currIndex += 1;
+      }
 
+    },
+    error() {
+      this.playNext();
+    }
   }
 };
 </script>
@@ -48,8 +115,7 @@ export default {
   z-index: $z-index-header;
   background-color: $module-bg;
   user-select: none;
-
-  // 闪屏会严重
+  // 过段时间再打开吧，闪屏太严重了
   // @include backdrop-blur();
 
   .header-container {
@@ -107,20 +173,55 @@ export default {
     }
 
     .header-player {
-      user-select: none;
-
+      position: absolute;
+      display: flex;
+      top: 0px;
+      right: 40rem;
       opacity: 0.3;
-
       &:hover {
         opacity: 1;
       }
+      audio {
+        opacity: 0.2;
+      }
     }
-  }
-
-  > .pre-load {
-    width: 0;
-    height: 0;
-    @include hidden();
+    .panel {
+      padding: 10px;
+      margin-bottom: $xs-gap;
+      width: 15rem;
+      overflow: hidden;
+      .button {
+        display: flex;
+        > button {
+          margin-right: 10px;
+          &:hover {
+            .iconfont {
+              color: $link-hover-color;
+            }
+          }
+        }
+      }
+      .song {
+        white-space: nowrap;
+        opacity: 0.5;
+        display: inline-block;
+        animation: 8s wordsLoop linear infinite normal;
+      }
+      @keyframes wordsLoop {
+        0% {
+          transform: translateX(0px);
+          -webkit-transform: translateX(0px);
+        }
+        100% {
+          transform: translateX(-100%);
+          -webkit-transform: translateX(-100%);
+        }
+      }
+    }
+    .iconfont {
+      color: $text-dividers;
+      @include color-transition();
+    }
   }
 }
 </style>

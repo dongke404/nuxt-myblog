@@ -20,7 +20,8 @@ export const actions = {
       // 内容数据
       store.dispatch('global/fetchFontcss'),
       store.dispatch('tag/fetchList'),
-      store.dispatch('category/fetchList'),
+      store.dispatch("music/fetchList"),
+      // store.dispatch('category/fetchList'),
 
     ]
 

@@ -1,5 +1,5 @@
 <template>
-  <article class="article-page">
+  <article class="article-page" :class="{ mobile: isMobile }">
     <div ref="detail" class="detail">
       <transition name="module" mode="out-in">
         <div v-if="!isFetching" class="oirigin" :class="originClass">
@@ -65,8 +65,8 @@
             </nuxt-link>
           </p>
           <p class="item">
-            <span class="title">{{ $i18n.metas.address.value }}</span>
-            <span class="site-url">{{ "url" }}</span>
+            <span class="title">{{ $i18n.metas.address.value+": " }}&nbsp;</span>
+            <span class="site-url">{{ articleUrl }}</span>
           </p>
           <div class="item">
             <span class="title">{{ $i18n.metas.copyright.value+'：' }}</span>
@@ -87,23 +87,37 @@
       <div v-else-if="article.related && article.related.length" key="related" class="related">
         <div v-if="!isMobile" v-swiper:releted="swiperOption" class="article-list swiper">
           <div class="swiper-wrapper">
-            <div class="swiper-slide item">
-              <nuxt-link class="item-box filter" :to="``" :title="'article.title'">
-                <img :alt="111111" class="thumb" />
+            <div
+              v-for="article in relatedArticles"
+              :key="article.article_id"
+              class="swiper-slide item"
+            >
+              <nuxt-link
+                class="item-box filter"
+                :to="`/article/${article.article_id}`"
+                :title="'article.title'"
+              >
+                <img :src="article.imgUrl" :alt="''" class="thumb" @error="hiddenImg" />
                 <span class="title">
-                  <span class="text">{{ 11111 }}</span>
+                  <span class="text">{{ article.title }}</span>
                 </span>
               </nuxt-link>
             </div>
           </div>
         </div>
+
         <ul v-else class="article-list">
-          <li key="index" class="item">
-            <nuxt-link class="item-link" :to="``" :title="``">
+          <div>推荐</div>
+          <li v-for="(article, index) in relatedArticles" :key="index" class="item">
+            <nuxt-link
+              class="item-link"
+              :to="`/article/${article.article_id}`"
+              :title="`「 ${article.title} 」- 阅读`"
+            >
               <span class="sign">《</span>
-              <span class="title">{{ 11122 }}</span>
+              <span class="title">{{ article.title }}</span>
               <span class="sign">》</span>
-              <small class="tip">- 继续阅读</small>
+              <small class="tip">- 阅读</small>
             </nuxt-link>
           </li>
         </ul>
@@ -125,7 +139,7 @@ import { OriginState } from "~/constants/system";
 import lozad from "~/plugins/lozad";
 import marked from "~/plugins/marked";
 import ShareBox from "~/components/widget/share";
-import Vue from "vue";
+import apisMap from "~/config/api.config";
 
 export default {
   name: "ArticleDetail",
@@ -228,15 +242,14 @@ export default {
     },
     routeArticleId() {
       return Number(this.$route.params.article_id);
-    }
-    //   articleUrl() {
-    //     return getArticleDetailPageUrl(this.article.id)
-    //   },
+    },
+    articleUrl() {
+      return apisMap.FE + `/article/${this.article.article_id}`;
+    },
 
-    //   relatedArticles() {
-    //     return [...this.article.related].slice(0, 10)
-    //   }
-    // },
+    relatedArticles() {
+      return this.article.related;
+    }
   },
 
   methods: {
@@ -251,19 +264,11 @@ export default {
         loaded: element => element.classList.add("loaded")
       });
       lozadObserver.observe();
+    },
+    hiddenImg(e) {
+      e.target.parentNode.removeChild(e.target);
+      // e.target.style.display="none"
     }
-
-    //   copyArticleUrl() {
-    //     if (this.article.title) {
-    //       this.$root.$copyToClipboard(this.articleUrl)
-    //     }
-    //   },
-    //   getRelatedArticleThumb(thumb) {
-    //     return getArchiveArticleThumbnailUrl(
-    //       thumb,
-    //       this.$store.getters['global/isWebPImage']
-    //     )
-    //   },
   }
 };
 </script>
@@ -347,7 +352,6 @@ export default {
               display: inline-block;
               @include text-overflow();
             }
-
             > .tip {
               display: inline-block;
             }
@@ -801,10 +805,6 @@ export default {
       > .swiper-wrapper {
         height: 9rem;
         overflow: hidden;
-
-        &[style*="300ms"] {
-          @include blur-filter("horizontal-small");
-        }
 
         > .swiper-slide.item {
           width: auto;

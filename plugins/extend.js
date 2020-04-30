@@ -4,14 +4,8 @@
  **/
 
 import Vue from 'vue'
-// import filters from '~/filters'
-// import apiConfig from '~/config/api.config'
 import i18nConfig from '~/config/i18n.config'
 import i18nTransfer  from '~/utils/i18nTransform'
-
-
-
-
 import EmptyBox from '~/components/common/empty'
 import LoadingBox from '~/components/common/loading'
 import CommentBox from '~/components/common/comment'
@@ -26,7 +20,6 @@ Vue.component(EmptyBox.name, EmptyBox)
 Vue.component(LoadingBox.name, LoadingBox)
 Vue.use(CommentBox)
 Vue.use(SkeletonBox)
-
 
 
 // mixins

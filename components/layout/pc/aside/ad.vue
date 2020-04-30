@@ -104,11 +104,6 @@
       height: 88px;
 
       .swiper-wrapper {
-        &[style*="300ms"] {
-          .swiper-slide-active {
-            @include blur-filter('vertical-small');
-          }
-        }
 
         .swiper-slide {
           .content {

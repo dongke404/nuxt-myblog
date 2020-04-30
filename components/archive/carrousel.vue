@@ -1,5 +1,5 @@
 <template>
-  <div class="carrousel">
+  <div class="carrousel" :class="{ mobile: isMobile }">
     <transition name="module" mode="out-in">
       <empty-box v-if="!articleList.length" key="empty" class="article-empty-box">
         <slot>{{ $i18n.text.article.empty }}</slot>
@@ -111,14 +111,7 @@ $mobile-carrousel-height: calc((100vw - 2rem) * 0.35);
   }
 
   > .swiper {
-    // Filter for slide when transitioning
-    .swiper-wrapper[style*="300ms"] {
-      .swiper-slide-active {
-        .content {
-          @include blur-filter("horizontal");
-        }
-      }
-    }
+
 
     .swiper-slide {
       .content {

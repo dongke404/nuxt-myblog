@@ -1,29 +1,39 @@
 <template>
-  <div id="app-main" >
-    <Link rel='styleSheet' type='text/css' :href='fontcss' />
+  <div id="app-main">
+    <Link rel="styleSheet" type="text/css" :href="fontcss" />
     <client-only>
       <figure class="widget">
         <background />
         <wallflower />
         <language />
         <theme-switch />
-        <back-to-top />
-        <share-box class="sidebar-share" />
+        <small-tool />
+        <share-box class="sidebar-share" v-if="!isFullViewWidth" />
       </figure>
     </client-only>
     <Header />
-    <main id="main" class="main-container">
-      <nav-view />
-      <div id="main-content" class="main-content">
+    <main id="main" class="main-container" :class="{
+        'full-view': isFullViewWidth}">
+      <nav-view v-if="!isThreeColumns" />
+      <div
+        id="main-content"
+        class="main-content"
+        :class="{
+          'two-column': isTwoColumns,
+          'three-column': isThreeColumns,
+          'full-view': isFullViewWidth
+        }"
+      >
         <nuxt :nuxt-child-key="$route.name" />
       </div>
       <aside-view v-if="!isTwoColumns && !isThreeColumns" key="aside" />
     </main>
-    <footer-view />
+    <footer-view v-if="!isFullViewWidth" />
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 import Background from "../../widget/background.vue";
 import Wallflower from "~/components/widget/clickEffect/garden";
 import NavView from "./nav";
@@ -32,15 +42,16 @@ import AsideView from "./aside/main";
 import Language from "~/components/widget/language";
 import ThemeSwitch from "~/components/widget/theme";
 import FooterView from "./footer";
-import BackToTop from "../../widget/back2top";
+import SmallTool from "../../widget/smalltool";
 import ShareBox from "~/components/widget/share";
+import { Route } from "~/constants/system";
 
 export default {
   name: "PcMain",
   components: {
     Wallflower,
     ShareBox,
-    BackToTop,
+    SmallTool,
     Background,
     NavView,
     Header,
@@ -50,8 +61,19 @@ export default {
     FooterView
   },
   computed: {
+    ...mapState("global", [
+      // "onMyMap",
+      // "onWallpaper",
+      "isTwoColumns",
+      "isThreeColumns"
+    ]),
+    isNotFullColPage() {
+      return ![Route.Music, Route.Service].includes(this.$route.name);
+    },
+    isFullViewWidth() {
+      return this.$route.name === Route.Photo;
+    },
     fontcss() {
-      console.log("33333333", this.$store.state.global.fontcss.fontcss);
       return this.$store.state.global.fontcss.fontcss;
     }
   },
@@ -97,7 +119,6 @@ export default {
       font-size: 18px;
       transition: width $transition-time-fast;
 
-      &.renren,
       &.evernote,
       &.linkedin,
       &.mail {

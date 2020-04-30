@@ -17,14 +17,13 @@
         <i class="iconfont icon-life"></i>
         <span class="text" v-text="$i18n.nav.life.value"></span>
       </nuxt-link>
+      <nuxt-link to="/timeline" class="item">
+        <i class="iconfont icon-date"></i>
+        <span class="text" v-text="$i18n.nav.timeline.value"></span>
+      </nuxt-link>
       <nuxt-link to="/photo" class="item">
         <i class="iconfont icon-photo"></i>
         <span class="text" v-text="$i18n.nav.photo.value"></span>
-      </nuxt-link>
-
-      <nuxt-link to="/music" class="item">
-        <i class="iconfont icon-music"></i>
-        <span class="text" v-text="$i18n.nav.music.value"></span>
       </nuxt-link>
       <nuxt-link to="/vlog" class="item">
         <i class="iconfont icon-vlog"></i>
@@ -39,7 +38,12 @@
         <span class="text" v-text="$i18n.nav.about.value"></span>
       </nuxt-link>
 
-      <a target="_blank" class="item ad aliyun" rel="external nofollow noopener">
+      <a
+        :href="links.Mysite"
+        target="_blank"
+        class="item ad aliyun"
+        rel="external nofollow noopener"
+      >
         <i class="iconfont icon-shequ1"></i>
         <span class="text" v-text="'MYSITE'"></span>
         <span class="superscript">
@@ -51,15 +55,12 @@
 </template>
 
 <script>
+import { links } from "~/config/app.config";
 export default {
-  name: "PcNav"
-  // computed: {
-  //   adConfig: () => adConfig,
-  //   appConfig: () => appConfig,
-  //   isEnLang() {
-  //     return this.$store.getters['global/isEnLang']
-  //   }
-  // }
+  name: "PcNav",
+  computed: {
+    links: () => links
+  }
 };
 </script>
 

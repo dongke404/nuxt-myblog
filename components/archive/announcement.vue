@@ -1,6 +1,9 @@
 <template>
-  <div class="announcement">
-    <div class="background"></div>
+  <div class="announcement" :class="{
+      mobile: isMobile,
+      theme
+    }">
+    <div v-if="!isMobile" class="background"></div>
     <div class="title">
       <span
         class="icon-box"
@@ -23,7 +26,7 @@
         >
           <div class="swiper-wrapper">
             <div v-for="(ann, index) in announcement" :key="index" class="swiper-slide slide-item">
-              <div class="content" v-text="ann.announcements"></div>
+              <div class="content" v-text="ann.say"></div>
               <div class="date">~ {{dayjs(ann.date).fromNow()}}</div>
             </div>
           </div>
@@ -53,7 +56,6 @@ export default Vue.extend({
   },
   data() {
     return {
-      dayjs: dayjs,
       activeIndex: 0,
       swiperOption: {
         height: 34,
@@ -69,8 +71,14 @@ export default Vue.extend({
     };
   },
   computed: {
+    dayjs() {
+      return dayjs;
+    },
     isMobile() {
       return this.$store.state.global.isMobile;
+    },
+    theme() {
+      return this.$store.state.global.theme;
     }
   },
   methods: {
@@ -161,15 +169,6 @@ $announcement-height: 3rem;
 
     .swiper {
       flex: 1;
-
-      // Filter for slide when transitioning
-      .swiper-wrapper[style*="300ms"] {
-        .swiper-slide-active {
-          .content {
-            @include blur-filter("vertical-small");
-          }
-        }
-      }
 
       .slide-item {
         width: auto;

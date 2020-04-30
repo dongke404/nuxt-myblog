@@ -10,17 +10,12 @@ const apisMap = {
   development: {
     FE: 'http://localhost:3000',
     BASE: 'http://localhost:5000',
-    CDN: '',
-    PROXY: '/proxy',
-    SOCKET: 'http://localhost:3000',
-
+    MUSIC:'http://www.dongkirk.xyz/playlist/detail?id=4992612670'
   },
   production: {
     FE: 'https://dongkirk.xyz',
     BASE: 'https://api.dongkirk.xyz',
-    PROXY: '',
-    SOCKET: '',
-    GRAVATAR: ''
+    MUSIC:'http://www.dongkirk.xyz/playlist/detail?id=4992612670'
   }
 }
 

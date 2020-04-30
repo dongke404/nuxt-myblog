@@ -1,7 +1,10 @@
 <template>
   <div
     class="header-box"
-    :class="theme"
+    :class="{
+      mobile: isMobile,
+      theme
+    }"
     :style="{
       'background-image': `url(${currentData.backgroundImg})`
     }"
@@ -9,7 +12,7 @@
     <div class="logo-box">
       <p class="logo">
         <transition name="module" mode="out-in">
-          <i key="date" :class="`iconfont icon-${currentData.icon}`"></i>
+          <i :class="`iconfont icon-${currentData.icon}`"></i>
         </transition>
       </p>
     </div>
