@@ -34,7 +34,9 @@
           <nuxt-link
             class="title"
             :to="`/article/${item.article_id}`"
-            :title="`${item.title} - 「 ${item.cmt_num} ${$i18n.text.comment.count.value} | ${item.likes} ${$i18n.text.comment.like.value} 」`"
+            :title="
+              `${item.title} - 「 ${item.cmt_num} ${$i18n.text.comment.count.value} | ${item.likes} ${$i18n.text.comment.like.value} 」`
+            "
           >
             <span v-text="item.title" />
           </nuxt-link>
@@ -77,20 +79,17 @@
           <slot>{{ $i18n.text.tag.empty.value }}</slot>
         </empty-box>
         <ul v-else class="aside-tag-list">
-          <nuxt-link
-            v-for="(tag, index) in tags"
-            :key="index"
-            class="item"
-            :to="`/tag/${tag.name}`"
-          >
-            <a class="title" :title="tag.description">
-              <i :class="`icon-${tag.icon}`" class="iconfont" />
-              <span class="name">
-                <span>{{ tag.name }}</span>
-                <span>({{ tag.count || 0 }})</span>
-              </span>
-            </a>
-          </nuxt-link>
+          <li v-for="(tag, index) in tags" :key="index" class="item">
+            <nuxt-link :to="`/tag/${tag.name}`">
+              <div class="title" :title="tag.description">
+                <i :class="`icon-${tag.icon}`" class="iconfont" />
+                <span class="name">
+                  <span>{{ tag.name }}</span>
+                  <span>({{ tag.count || 0 }})</span>
+                </span>
+              </div>
+            </nuxt-link>
+          </li>
         </ul>
       </div>
     </div>
@@ -124,7 +123,6 @@ export default Vue.extend({
     if (this.$route.name === Route.SearchArchive) {
       this.keyword = this.$route.params.keyword;
     }
-
   },
 
   computed: {
@@ -144,7 +142,6 @@ export default Vue.extend({
         this.$router.push({ name: Route.SearchArchive, params: { keyword } });
       }
     }
-
   }
 });
 </script>

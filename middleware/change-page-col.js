@@ -4,7 +4,6 @@ export default ({ route, store }) => {
   // columns
   const isTwoColumns = [
     Route.About,
-    Route.Vlog,
     Route.Timeline
   ].includes(route.name || '')
   const isThreeColumns = [

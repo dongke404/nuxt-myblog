@@ -41,7 +41,6 @@ export const Route = {
   SearchArchive: 'search-keyword',
   Guestbook: 'guestbook',
   About: 'about',
-  Vlog: 'vlog',
   Timeline:'timeline',
   Photo:"photo-photo_album"
 

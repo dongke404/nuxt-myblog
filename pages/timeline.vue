@@ -35,7 +35,6 @@ export default {
   },
   computed: {
     datalist() {
-      console.log(this.$store.state.timeline.data);
       return this.$store.state.timeline.data;
     }
   },

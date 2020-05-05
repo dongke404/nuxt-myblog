@@ -1,25 +1,25 @@
-
 <template>
   <div class="photo-container">
-    <swiper class="swiper" :options="swiperOption">
-      <swiper-slide v-for="(item,index) in photo.album" :key="index">
-        <div>
-          <div class="imgBx">
-            <img :src="item.img" />
+    <swiper class="swiper" ref="mySwiper" :options="swiperOption">
+      <swiper-slide v-for="(item, index) in photo.album" :key="index">
+        <nuxt-link :to="`/photo/${item.name}`">
+          <div>
+            <div class="imgBx">
+              <img :src="item.img" />
+            </div>
+            <div class="details">
+              <h3>
+                {{ item.name }}
+                <br />
+                <span>{{ item.description }}</span>
+              </h3>
+            </div>
           </div>
-          <div class="details">
-            <h3>
-              {{item.name}}
-              <br />
-              <span>{{item.description}}</span>
-            </h3>
-          </div>
-        </div>
+        </nuxt-link>
       </swiper-slide>
-
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
-    <Album ref="album" :photos="photos"  @updateData="updateData"></Album>
+    <Album ref="album" :photos="photos" @updateData="updateData"></Album>
   </div>
 </template>
 
@@ -40,7 +40,6 @@ export default {
   //   return params.photo_album && !isNaN(Number(params.photo_album));
   // },
   fetch({ store, params, error }) {
-    console.log(8888888, params.photo_album);
     return Promise.all([
       store.dispatch("photo/fetchAlbumList"),
       store.dispatch("photo/fetchPhotoList", {
@@ -57,47 +56,49 @@ export default {
     //   return this.$store.state.totalPage;
     // },
     photos() {
-      // console.log(this.photo.photos);
       return this.photo.photos.map(item => {
         item.src = item.img;
         item.href = item.img;
         return item;
       });
+    },
+
+    swiper() {
+      return this.$refs.mySwiper.$swiper;
     }
   },
   methods: {
     updateData() {
+      // console.log("触发")
       this.currPage += 1;
-      console.log(99999999999,this.photo.totalPage)
       if (this.currPage > this.photo.totalPage) {
-        console.log(this.$refs.album)
-        this.$refs.album.loadover()
+        this.$refs.album.loadover();
       } else {
         this.$store.dispatch("photo/fetchPhotoList", {
           album: this.$route.params.photo_album,
           page: this.currPage
         });
       }
-    },
-
-    // nextPageParams() {
-    //   return {
-    //     album: params.photo_album,
-    //     page: this.currPage + 1
-    //   };
-    // }
+    }
   },
-  // watch: {
-  //   $route(newVel, oldVel) {
-  //     this.currPage=1
-  //   }
-  // },
+  mounted() {
+    // console.log("Current Swiper instance object", this.swiper);
+    this.swiper.slideTo(Math.floor(this.photo.album.length / 2), 1000, false);
+  },
+
+  watch: {
+    $route(newVel, oldVel) {
+      this.currPage = 1;
+    }
+  },
+  destroyed() {
+    this.$store.commit("photo/clearPhotoList");
+  },
   data() {
     return {
       currPage: 1,
-
-
       swiperOption: {
+        activeIndex: 5,
         effect: "coverflow",
         grabCursor: true,
         centeredSlides: true,
@@ -105,9 +106,10 @@ export default {
         coverflowEffect: {
           rotate: 40,
           stretch: 0,
-          depth: 500,
+          depth: 400,
           modifier: 1,
           slideShadows: true
+          // centerInsufficientSlides:true
         },
         pagination: {
           el: ".swiper-pagination"
@@ -173,5 +175,3 @@ export default {
   }
 }
 </style>
-
-

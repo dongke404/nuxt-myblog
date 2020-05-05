@@ -14,7 +14,6 @@
             target="_blank"
             href="#"
             rel="external nofollow noopenter"
-            @mousedown="handleSponsor"
           >PayPal me</a>
         </div>
         <div class="item">

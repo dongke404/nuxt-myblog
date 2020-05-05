@@ -428,11 +428,9 @@
 
 
 
-
-
 // console.log(parseInt(Math.random() * 3))
-let temp=parseInt(Math.random()*(1000-100+1)+100,10);
-console.log(temp)
+// let temp=parseInt(Math.random()*(1000-100+1)+100,10);
+console.log(parseInt("111"))
 
 
 

@@ -25,9 +25,9 @@
         <i class="iconfont icon-photo"></i>
         <span class="text" v-text="$i18n.nav.photo.value"></span>
       </nuxt-link>
-      <nuxt-link to="/vlog" class="item">
-        <i class="iconfont icon-vlog"></i>
-        <span class="text" v-text="$i18n.nav.vlog.value"></span>
+      <nuxt-link to="/file/1" class="item">
+        <i class="iconfont icon-file"></i>
+        <span class="text" v-text="$i18n.nav.file.value"></span>
       </nuxt-link>
       <nuxt-link to="/guestbook" class="item guestbook">
         <i class="iconfont icon-guestbook"></i>

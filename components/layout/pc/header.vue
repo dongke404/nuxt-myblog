@@ -69,7 +69,6 @@ export default {
       return this.audio[this.currIndex];
     },
     mLength() {
-      console.log(this.audio.length);
       return this.audio.length;
     }
   },

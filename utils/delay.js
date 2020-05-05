@@ -14,7 +14,6 @@ export const fetchDelay = (delay) => {
 
     const end = new Date().getTime()
     const time = end - start
-    console.log("time",time)
     const timeout = delay - time
     const isDelay = isBrowser && timeout > 0
     isDelay ? window.setTimeout(action, timeout) : action()
