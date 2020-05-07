@@ -1,12 +1,8 @@
 /**
  * @file 弹窗服务 / ES module
  * @module plugins/popup
-
  */
-
-import { isBrowser } from '~/environment'
-
-if (isBrowser) {
+if (process.browser) {
   // 销毁弹窗
   const closePopup = documentID => {
     const mask = document.getElementById(documentID)

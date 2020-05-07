@@ -384,7 +384,7 @@ export default Vue.extend({
 
           .title {
             display: flex;
-            font-family: $font-family-sans-serif;
+     
 
             .iconfont {
               width: 2em;

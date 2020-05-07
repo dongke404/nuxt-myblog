@@ -2,12 +2,11 @@
  * 请求延时
  */
 
-import appConfig from '~/config/app.config'
-import { isBrowser } from '~/environment'
+import { fetch } from '~/config/app.config'
 
 export const fetchDelay = (delay) => {
 
-  delay = delay != null ? delay : appConfig.fetch.delay
+  delay = delay != null ? delay : fetch.delay
   const start = new Date().getTime()
 
   return (action) => {
@@ -15,7 +14,7 @@ export const fetchDelay = (delay) => {
     const end = new Date().getTime()
     const time = end - start
     const timeout = delay - time
-    const isDelay = isBrowser && timeout > 0
+    const isDelay = process.browser && timeout > 0
     isDelay ? window.setTimeout(action, timeout) : action()
   }
 }

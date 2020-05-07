@@ -42,7 +42,7 @@
       $text: #555,
       $white: #fff,
       $black: #000,
-      $primary: #0088f5,
+      $primary: #ad6598,
       $body-bg: #eee,
       $module-hover-bg: rgba(197, 197, 197, 0.5),
       $logo-rotate: none
@@ -56,6 +56,17 @@
       $black: #fff,
       $primary: #fff,
       $body-bg: #000,
+      $module-hover-bg: rgba(0, 0, 0, 0.5),
+      $logo-rotate: hue-rotate(30deg) brightness(180%) grayscale(100%)
+    );
+  }
+  &.waterblue {
+    @include css-var(
+      $text: #000,
+      $white: #a7a8bd,
+      $black: #000,
+      $primary: #737c7b,
+      $body-bg: #b0d5df,
       $module-hover-bg: rgba(0, 0, 0, 0.5),
       $logo-rotate: hue-rotate(30deg) brightness(180%) grayscale(100%)
     );

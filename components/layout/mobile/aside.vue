@@ -6,7 +6,7 @@
       </div>
       <div class="profile">
         <h3 class="name">dongkirk</h3>
-        <p class="slogan" v-text="$i18n.text.slogan.value"></p>
+        <p class="slogan" v-text="$i18n.slogan.value"></p>
       </div>
     </div>
     <div class="aside-nav">
@@ -27,9 +27,9 @@
           <i class="iconfont icon-life"></i>
           <span class="text" v-text="$i18n.nav.life.value"></span>
         </nuxt-link>
-        <nuxt-link to="/vlog" class="item">
-          <i class="iconfont icon-vlog"></i>
-          <span class="text" v-text="$i18n.nav.vlog.value"></span>
+        <nuxt-link to="/timeline" class="item">
+          <i class="iconfont icon-date"></i>
+          <span class="text" v-text="$i18n.nav.timeline.value"></span>
         </nuxt-link>
         <nuxt-link to="/guestbook" class="item guestbook">
           <i class="iconfont icon-guestbook"></i>
@@ -64,7 +64,7 @@ export default Vue.extend({
     }
   },
   mounted() {
-    return this.$store.dispatch("global/fetchAdminInfo");
+    // return this.$store.dispatch("global/fetchAdminInfo");
   },
   computed: {
     links: () => links,

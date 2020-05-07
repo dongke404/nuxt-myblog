@@ -15,9 +15,7 @@
           isActive: item === currCateygory
         }"
         @click="selectType"
-      >
-        {{ item }}
-      </span>
+      >{{ item }}</span>
     </nav>
     <div class="file-body">
       <ul class="list">
@@ -28,18 +26,13 @@
         </li>
         <li v-for="(item, index) in files" :key="index">
           <a href="item.fileurl">
-            <div>{{ item.name }}</div></a
-          >
+            <div>{{ item.name }}</div>
+          </a>
           <div>{{ item.date }}</div>
 
           <div v-if="index === currPwd">{{ item.pwd }}</div>
           <div v-else>******</div>
-          <i
-            class="iconfont icon-view"
-            style="cursor:pointer"
-            :flag="index"
-            @click="showPwd"
-          ></i>
+          <i class="iconfont icon-view" style="cursor:pointer" :flag="index" @click="showPwd"></i>
         </li>
       </ul>
     </div>
@@ -56,8 +49,7 @@
         :page-class="'page-item'"
         :active-class="'page-active'"
         :initial-page="1"
-      >
-      </paginate>
+      ></paginate>
     </client-only>
   </div>
 </template>
@@ -65,6 +57,11 @@
 <script>
 export default {
   name: "File",
+  head() {
+    return {
+      title: this.$i18n.nav.file.value
+    };
+  },
   data() {
     return {
       page: Number(this.$route.params.file_page),
@@ -143,7 +140,6 @@ export default {
   padding: 3px;
   color: $text;
   font-size: $font-size-root;
-  font-family: $font-family-sans-serif;
   border-radius: 8px;
   border: 1px solid $text;
 }
@@ -172,7 +168,11 @@ export default {
     margin: 0;
     padding: 0;
     li {
+      height: 3em;
+
       display: flex;
+      // justify-items: center;
+      // align-items: center;
       justify-content: space-between;
       div {
         padding: 5px;

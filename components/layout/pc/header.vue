@@ -2,8 +2,11 @@
   <header id="header" class="header">
     <div class="header-container container">
       <div class="header-header">
-        <div class="header-logo">名字名字</div>
-        <span class="header-slogan">个性签名</span>
+        <div class="header-logo">
+          <h1>Kirk Dong</h1>
+        </div>
+        <span class="header-slogan">{{$i18n.slogan.value}}</span>
+        <nuxt-link to="/" class="header-link" :title="$i18n.slogan.value" />
       </div>
       <div class="header-player">
         <audio
@@ -95,7 +98,6 @@ export default {
       } else {
         this.currIndex += 1;
       }
-
     },
     error() {
       this.playNext();
@@ -141,9 +143,9 @@ export default {
       }
 
       .header-logo {
+        color: #ad6598;
         width: 11rem;
         margin-right: $gap * 4;
-        filter: $theme-logo-rotate;
         mask-size: 88%;
         mask-position: -30%;
         mask-image: linear-gradient(
@@ -153,10 +155,6 @@ export default {
           rgba(255, 255, 255, 0.2)
         );
         animation: logo-blink 8s ease-in 1s infinite;
-
-        .logo-st {
-          fill: $primary;
-        }
       }
 
       .header-slogan {

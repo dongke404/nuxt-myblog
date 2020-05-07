@@ -98,7 +98,7 @@ export default {
       font-weight: 700;
       border-radius: 1px;
       color: $text-secondary;
-      font-family: "webfont-normal", DINRegular;
+      font-family: 'webfont' !important;
       letter-spacing: 0.5px;
       margin-bottom: $sm-gap;
       @include color-transition();

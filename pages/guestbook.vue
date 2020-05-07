@@ -18,7 +18,7 @@ export default {
   name: "Guestbook",
   head() {
     return {
-      title: this.$i18n.nav.guestbook + "Guestbook"
+      title: this.$i18n.nav.guestbook.value + "Guestbook"
     };
   },
   fetch({ store }) {

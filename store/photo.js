@@ -43,7 +43,7 @@ export const actions = {
       .then(response => {
         if (params.page === 1 ) {
           commit("clearPhotoList");
-          if (process.browser){
+          if (process.browser && params.album){
             Vue.nextTick(() => {
               scrollTo({
                 top:450,

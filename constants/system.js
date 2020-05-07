@@ -26,7 +26,7 @@ export const Language = {
 export const Theme = {
   Default: 'bright',
   Dark: 'dark',
-  Gold: 'gold',
+  Waterblue: 'waterblue',
 }
 
 export const SortType = {

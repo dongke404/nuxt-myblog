@@ -2,7 +2,6 @@
  * @file 根数据状态，仅用以调度初始化任务 / ES module
  */
 
-import { isServer } from '~/environment'
 import { uaParser } from '~/utils/ua-handler.js'
 import systemConstants from '~/constants/system'
 
@@ -10,8 +9,8 @@ export const actions = {
   nuxtServerInit(store, { req }) {
     // 检查设备类型
     // console.log(store)
-    const userLanguage = isServer ? req.headers['accept-language'] : navigator.language
-    const userAgent = isServer ? req.headers['user-agent'] : navigator.userAgent
+    const userLanguage = process.server ? req.headers['accept-language'] : navigator.language
+    const userAgent = process.server ? req.headers['user-agent'] : navigator.userAgent
     const { isMobile } = uaParser(userAgent)
     const isZHUser = !userLanguage || userLanguage.includes(systemConstants.Language.Zh)
 
@@ -21,8 +20,6 @@ export const actions = {
       store.dispatch('global/fetchFontcss'),
       store.dispatch('tag/fetchList'),
       store.dispatch("music/fetchList"),
-      // store.dispatch('category/fetchList'),
-
     ]
 
     // 如果是非中文地区用户则设置为英文

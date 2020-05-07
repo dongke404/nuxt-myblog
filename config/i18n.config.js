@@ -16,396 +16,375 @@ export default {
       code: "en",
       iso: "en-US",
       name: "English"
+    },
+
+    {
+      code: "jp",
+      iso: "en-US",
+      name: "Japanese"
     }
   ],
   data: {
+    slogan: {
+      zh: "吾生也有涯, 而知也无涯",
+      en: "knowledge is never finite.",
+      jp: "未来の自分へ"
+    },
     nav: {
       home: {
         zh: "醉花阴",
-        en: "home"
+        en: "home",
+        jp: "ホームページ"
       },
       code: {
         zh: "无妄海",
-        en: "code"
+        en: "code",
+        jp: "コード"
       },
       think: {
         zh: "清平乐",
-        en: "think"
+        en: "think",
+        jp: "思考する"
       },
       life: {
         zh: "如梦令",
-        en: "code"
+        en: "life",
+        jp: "暮しくらし"
       },
       timeline: {
-        zh: "岁月神偷",
-        en: "timeline"
+        zh: "荏苒",
+        en: "timeline",
+        jp: "時の流れ"
       },
       photo: {
         zh: "琉璃镜",
-        en: "photo"
+        en: "photo",
+        jp: "写真をとる"
       },
       file: {
-        zh: "逍遥乐",
-        en: "file"
-      },
-      music: {
-        zh: "洞仙歌",
-        en: "music"
+        zh: "藏经阁",
+        en: "file",
+        jp: "ファイル"
       },
       about: {
-        zh: "彼岸花",
-        en: "about"
-      },
-      service: {
-        zh: "得道",
-        en: "service"
+        zh: "天命风流",
+        en: "about",
+        jp: "個人情報"
       },
       guestbook: {
-        zh: "花满楼",
-        en: "guestbook"
-      },
-
-      app: {
-        zh: "客户端",
-        en: "app"
-      },
-      map: {
-        zh: "旷日积晷",
-        en: "sitemap.xml"
+        zh: "山外小楼",
+        en: "guestbook",
+        jp: "伝言"
       }
     },
     metas: {
       text1: {
         zh: "本文于",
-        en: "Article at"
+        en: "Article at",
+        jp: ""
       },
       text2: {
         zh: "发布在",
-        en: "Published"
+        en: "Published",
+        jp: ""
       },
       text3: {
         zh: "分类下，当前已被围观",
-        en: "Category,viewed"
+        en: "Category,viewed",
+        jp: ""
       },
       text4: {
         zh: "次",
-        en: "times"
+        en: "times",
+        jp: ""
       },
       rlttag: {
         zh: "相关标签",
-        en: "Relevant tags"
+        en: "Relevant tags",
+        jp: ""
       },
       address: {
         zh: "永久地址",
-        en: "Address"
+        en: "Address",
+        jp: ""
       },
       copyright: {
         zh: "版权声明",
-        en: "Copyright Notice"
+        en: "Copyright Notice",
+        jp: ""
       },
       copyright1: {
         zh: "自由转载-署名-非商业性使用",
-        en: "Freely reproduced for non-commercial use"
+        en: "Freely reproduced for non-commercial use",
+        jp: ""
       }
     },
     text: {
       empty: {
         zh: "空空如也",
-        en: "No Result Data."
-      },
-      friendMe: {
-        zh: "众里寻他",
-        en: "Friend me"
+        en: "No Result Data.",
+        jp: ""
       },
       notFound: {
-        zh: "众里寻他 我已不再",
-        en: "Arrives here at last"
+        zh: "误入藕花深处",
+        en: "Arrives here at last",
+        jp: ""
       },
       backToHomePage: {
-        zh: "山河万里 长歌归故",
-        en: "Driveby"
+        zh: "返回首页",
+        en: "Driveby",
+        jp: ""
       },
       guestbook: {
-        zh: "此心光明 亦复何言",
-        en: "You have come a long way"
-      },
-      wallpaper: {
-        zh: "山河入梦",
-        en: "Gallery"
-      },
-      service: {
-        slogan: {
-          zh: "为我一挥手，如临万壑松",
-          en: "Talk is cheap. Show me the code"
-        },
-        emailMe: {
-          zh: "即破楼兰",
-          en: "Email ME"
-        },
-        hireMe: {
-          zh: "或在 Upwork 雇佣我",
-          en: "Hire me on upwork.com"
-        }
+        zh: "不忘初心 方得始终",
+        en: "You have come a long way",
+        jp: ""
       },
       device: {
         android: {
           zh: "Android",
-          en: "Android"
+          en: "Android",
+          jp: ""
         },
         ios: {
           zh: "IOS",
-          en: "IOS"
+          en: "IOS",
+          jp: ""
         }
       },
       webcam: {
         zh: "见相",
-        en: "Webcam"
+        en: "Webcam",
+        jp: ""
       },
       barrage: {
         name: {
           zh: "畅言",
-          en: "Barrage"
+          en: "Barrage",
+          jp: ""
         }
       },
-      feedback: {
-        zh: "反馈",
-        en: "Feedback"
-      },
       totop: {
-        zh: "从头开始",
-        en: "To top"
+        zh: "回到顶部",
+        en: "To top",
+        jp: ""
       },
       tobottom: {
-        zh: "再来一屏",
-        en: "Next screen"
+        zh: "到底部",
+        en: "To button",
+        jp: ""
       },
       origin: {
         original: {
           zh: "原创",
-          en: "og"
+          en: "og",
+          jp: ""
         },
         reprint: {
           zh: "转载",
-          en: "rp"
+          en: "rp",
+          jp: ""
         },
         hybrid: {
           zh: " 参考",
-          en: "hb"
-        }
-      },
-      action: {
-        open: {
-          zh: "展开描述",
-          en: "open description"
-        },
-        close: {
-          zh: "收起描述",
-          en: "close description"
-        },
-        on: {
-          zh: "开",
-          en: "on"
-        },
-        off: {
-          zh: "关",
-          en: "off"
-        }
-      },
-      slogan: {
-        zh: "來苏之望，念狂梦猖",
-        en: "Because the mountain was there."
-      },
-      music: {
-        empty: {
-          zh: "五音六律，七弦八度",
-          en: "The music, the soul of man."
+          en: "hb",
+          jp: ""
         }
       },
       category: {
-        name: {
-          zh: "分门别类",
-          en: "Categories"
-        },
         empty: {
           zh: "未分类",
-          en: "no cate"
+          en: "no cate",
+          jp: ""
         }
       },
       search: {
-        zh: "向外探索，向内觉知",
-        en: "Search..."
+        zh: "输入关键词",
+        en: "Search...",
+        jp: ""
       },
       tag: {
-        name: {
-          zh: "画龙点睛",
-          en: "Tags"
-        },
         empty: {
           zh: "无标签",
-          en: "No tags."
+          en: "No tags.",
+          jp: ""
         }
       },
       article: {
         fullcolread: {
           zh: "通栏阅读",
-          en: "Full Column"
-        },
-        fullscreenread: {
-          zh: "全屏阅读",
-          en: "Full Screen"
-        },
-        readAll: {
-          zh: "阅读余下全文",
-          en: "Read all"
+          en: "Full Column",
+          jp: ""
         },
         rendering: {
           zh: "渲染中...",
-          en: "rendering..."
-        },
-        name: {
-          zh: "文不加点",
-          en: "Articles"
+          en: "rendering...",
+          jp: ""
         },
         empty: {
           zh: "空空如也",
-          en: "No Result Article."
+          en: "No Result Article.",
+          jp: ""
         },
         hotlist: {
-          zh: "群贤毕至",
-          en: "hot"
+          zh: "百家争鸣",
+          en: "hot",
+          jp: ""
         },
         loadmore: {
-          zh: "山河入梦",
-          en: "loadmore"
+          zh: "柳暗花明",
+          en: "loadmore",
+          jp: ""
         },
         loading: {
-          zh: "人面桃花",
-          en: "loading"
+          zh: "随波逐流",
+          en: "loading",
+          jp: ""
         },
         nomore: {
-          zh: "春尽江南",
-          en: "no more"
-        }
-      },
-
-      page: {
-        name: {
-          zh: "黄卷青灯",
-          en: "pages"
+          zh: "山穷水尽",
+          en: "no more",
+          jp: ""
         }
       },
       announcement: {
         empty: {
           zh: "空空如也",
-          en: "No announcements."
+          en: "No announcements.",
+          jp: ""
         }
       },
       comment: {
         empty: {
           zh: "期待你的捷足先登",
-          en: "Hit the nail on the head."
+          en: "Hit the nail on the head.",
+          jp: ""
         },
         anonymous: {
           zh: "匿名用户",
-          en: "anonymous"
+          en: "anonymous",
+          jp: ""
         },
         ding: {
           zh: "赞",
-          en: "like"
+          en: "like",
+          jp: ""
         },
         reply: {
           zh: "回复",
-          en: "reply"
+          en: "reply",
+          jp: ""
         },
         pagenation: {
           new: {
             zh: "更新",
-            en: "new"
+            en: "new",
+            jp: ""
           },
           old: {
             zh: "更旧",
-            en: "old"
+            en: "old",
+            jp: ""
           }
         },
         profile: {
           name: {
             zh: "名字",
-            en: "name"
+            en: "name",
+            jp: ""
           },
           email: {
             zh: "邮箱",
-            en: "email"
+            en: "email",
+            jp: ""
           },
           site: {
             zh: "网址",
-            en: "site"
+            en: "site",
+            jp: ""
           },
           content: {
             zh: "内容",
-            en: "content"
+            en: "content",
+            jp: ""
           },
           emailerr: {
             zh: "邮箱不合法",
-            en: "Email address is not legitimate!"
+            en: "Email address is not legitimate!",
+            jp: ""
           },
           siteerr: {
             zh: "网址不合法",
-            en: "Site is not legitimate!"
+            en: "Site is not legitimate!",
+            jp: ""
           },
           contenterr: {
             zh: "内容需要在 2000字/36行 以内",
-            en: "Content requirements are within 2000 words / 36 lines!"
+            en: "Content requirements are within 2000 words / 36 lines!",
+            jp: ""
           },
           submiterr: {
             zh: "发布失败，原因 -> 控制台",
-            en: "Submit err, get err in dev console!"
+            en: "Submit err, get err in dev console!",
+            jp: ""
           },
           actionerr: {
             zh: "操作失败，原因 -> 控制台",
-            en: "Action err, get err in dev console!"
+            en: "Action err, get err in dev console!",
+            jp: ""
           }
         },
         setting: {
           account: {
             zh: "设置账户信息",
-            en: "account setting"
+            en: "account setting",
+            jp: ""
           },
           edit: {
             zh: "编辑信息",
-            en: "edit profile"
+            en: "edit profile",
+            jp: ""
           },
           clear: {
             zh: "清空信息",
-            en: "clear profile"
+            en: "clear profile",
+            jp: ""
           }
         },
         placeholder: {
-          zh: "愿你的见解一针见血",
-          en: "Hit the nail on the head."
+          zh: "发表你独特的见解",
+          en: "Hit the nail on the head.",
+          jp: ""
         },
         count: {
           zh: "条看法",
-          en: "comments"
+          en: "comments",
+          jp: ""
         },
         like: {
-          zh: "人觉得有点牛逼",
-          en: " likes"
+          zh: "人觉得很棒",
+          en: " likes",
+          jp: ""
         },
         new: {
           zh: "最新",
-          en: "new"
+          en: "new",
+          jp: ""
         },
         hot: {
           zh: "最热",
-          en: "hot"
+          en: "hot",
+          jp: ""
         },
         submit: {
-          zh: "发射",
-          en: "publish"
+          zh: "发送",
+          en: "publish",
+          jp: ""
         },
         submiting: {
-          zh: "发射中...",
-          en: "publishing"
+          zh: "发送中...",
+          en: "publishing",
+          jp: ""
         }
       }
     },
@@ -413,70 +392,86 @@ export default {
       category: {
         all: {
           zh: "全部",
-          en: "all"
+          en: "all",
+          jp: ""
         },
         study: {
           zh: "学习资料",
-          en: "study"
+          en: "study",
+          jp: ""
         },
         tools: {
           zh: "工具",
-          en: "tools"
+          en: "tools",
+          jp: ""
         },
         movie: {
           zh: "电影",
-          en: "movie"
+          en: "movie",
+          jp: ""
         },
         books: {
           zh: "书籍",
-          en: "books"
+          en: "books",
+          jp: ""
         },
         cartoon: {
           zh: "动画",
-          en: "cartoon"
+          en: "cartoon",
+          jp: ""
         },
         other: {
           zh: "其他",
-          en: "other"
+          en: "other",
+          jp: ""
         }
       },
       resource: {
         zh: "资源名",
-        en: "resource"
+        en: "resource",
+        jp: ""
       },
       update: {
         zh: "上传时间",
-        en: "update"
+        en: "update",
+        jp: ""
       },
       secret: {
         zh: "秘钥",
-        en: "secret"
+        en: "secret",
+        jp: ""
       },
       nextpage: {
         zh: "下一页",
-        en: "nextpage"
+        en: "nextpage",
+        jp: ""
       },
       prevpage: {
         zh: "上一页",
-        en: "prepage"
+        en: "prepage",
+        jp: ""
       }
     },
     calendar: {
       year: {
         zh: "年",
-        en: "Y"
+        en: "Y",
+        jp: "Y"
       },
       month: {
         zh: "月",
-        en: "M"
+        en: "M",
+        jp: "M"
       },
       day: {
         zh: "日",
-        en: "D"
+        en: "D",
+        jp: "D"
       },
       weeksText: {
         en: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-        zh: ["一", "二", "三", "四", "五", "六", "七"]
+        zh: ["一", "二", "三", "四", "五", "六", "七"],
+        jp:["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
       }
     }
   }

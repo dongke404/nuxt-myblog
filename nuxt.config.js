@@ -1,18 +1,17 @@
 import apiConfig from "./config/api.config";
+import appConfig from './config/app.config'
 
 export default {
   mode: "universal",
   env: {
     BASE: apiConfig.BASE,
   },
-  /*
-   ** Headers of the page
-   */
   head: {
-    title: process.env.npm_package_name || "",
+    title: `${appConfig.meta.title}`,
+    titleTemplate: `%s | ${appConfig.meta.title}`,
     meta: [
       { charset: "utf-8" },
-      // { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      // { 'http-equiv': "Content-Security-Policy", content: "upgrade-insecure-requests" },
       {
         name: "viewport",
         content: "width=device-width, initial-scale=1.0, user-scalable=no",
@@ -29,7 +28,7 @@ export default {
       {
         rel: "styleSheet",
         type: "text/css",
-        href: "//at.alicdn.com/t/font_1755605_yxo5r8b04oh.css",
+        href: "//at.alicdn.com/t/font_1755605_nym6eqm7oyl.css",
       },
     ],
   },
@@ -73,7 +72,7 @@ export default {
 
   build: {
     extractCSS: true,
-    extend(config, ctx) {},
+    extend(config, ctx) { },
   },
   router: {
     //可设置当前路由按钮的class
@@ -92,5 +91,6 @@ export default {
     { src: "~/plugins/timeline.js", mode: "client" },
     { src: "~/plugins/waterfall.js", mode: "client" },
     { src: "~/plugins/paginate.js", mode: "client" },
+    { src: '~/plugins/copy', mode: 'client' },
   ],
 };

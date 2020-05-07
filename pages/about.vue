@@ -5,21 +5,17 @@
         <div class="item">
           <i class="iconfont icon-swordsman" style="color:red" />
           <p class="bio">
-            <span>{{ `浪蝶游蜂，迈步九云中` }}</span>
+            <span>{{ "董柯，Kirk Dong, Dong ke" }}</span>
           </p>
         </div>
         <div class="item">
           <i class="iconfont icon-sponsor" style="color:gold"></i>
-          <a
-            target="_blank"
-            href="#"
-            rel="external nofollow noopenter"
-          >PayPal me</a>
+          <a target="_blank" href="#" rel="external nofollow noopenter">PayPal me</a>
         </div>
         <div class="item">
           <i class="iconfont icon-music" style="color:green" />
           <span class="music">
-            <nuxt-link to="/music">Jazz-HipHop, Electronic, Disco, Rock, Popular</nuxt-link>
+            <nuxt-link to="/music">Rap, Rock, Popular</nuxt-link>
             <a
               href="https://music.163.com/#/playlist?id=638949385"
               target="_blank"
@@ -58,12 +54,7 @@
               </a>
             </span>
             <span v-if="!isMobile" class="mini">
-              <a
-                href="https://www.zhihu.com/people/surmon"
-                target="_blank"
-                class="item zhihu"
-                rel="external nofollow noopenter"
-              >
+              <a href="#" target="_blank" class="item zhihu" rel="external nofollow noopenter">
                 <i class="iconfont icon-zhihu" />
               </a>
             </span>
@@ -71,11 +62,11 @@
         </div>
         <div class="item">
           <i class="iconfont icon-hobby" style="color:pink" />
-          <span class="like-text">{{ '爱好' }}</span>
+          <span class="like-text">{{ '武侠古风，二次元，数码，跑步, 电影' }}</span>
         </div>
         <div class="item">
-          <i class="iconfont icon-qianming" style="color:#33ff33" />
-          <a href class="qianming">{{'签名'}}</a>
+          <i class="iconfont icon-address" style="color:#33ff33" />
+          <a href="#" class="address">{{'浙江 , 杭州'}}</a>
         </div>
         <div class="item">
           <i class="iconfont icon-friendlink" style="color:#BF3EFF" />
@@ -90,7 +81,7 @@
           </span>
         </div>
       </div>
-      <div class="gravatar">
+      <div class="gravatar" v-if="!isMobile">
         <div class="card middle">
           <div class="front">
             <img
@@ -131,7 +122,10 @@
     >
       <img :src="adConfig.src">
     </a>-->
-    <div class="about-introduce">关于我：</div>
+    <div class="about-introduce">
+      关于我：
+      <p>92年的最后一个月，诞生于越剧发源地的一个小城市，从小到大，和大多数孩子一样，从幼儿园到高中，一路往上学习。</p>
+    </div>
   </div>
 </template>
 
@@ -145,7 +139,7 @@ export default {
   name: "About",
   head() {
     return {
-      title: `${this.isEnLang ? "" : this.$i18n.nav.about + " | "}About`
+      title: `${this.$i18n.nav.about.value + " | "}About`
     };
   },
   // fetch({ store }) {
@@ -219,20 +213,15 @@ export default {
 
         > .bio {
           display: inline-block;
-          font-family: "webfont-bolder", DINRegular;
-          margin: 0;
 
-          &::first-letter {
-            font-size: $font-size-h2;
-            margin-right: 2px;
-          }
+          margin: 0;
         }
 
         > .like-text {
           font-family: "webfont-bolder", DINRegular;
         }
 
-        > .qianming {
+        > .address {
           border-bottom: 1px solid;
           font-family: "webfont-bolder", DINRegular;
         }
@@ -360,7 +349,7 @@ export default {
     }
 
     .gravatar {
-      width:340px;
+      width: 340px;
       // height: 300px;
       font-family: "montserrat";
       position: relative;
@@ -416,7 +405,6 @@ export default {
       .sm a:hover {
         background: #2c3e50;
         color: white;
-
       }
       .card:hover > .front {
         transform: perspective(600px) rotateY(-180deg);
@@ -509,12 +497,6 @@ export default {
             margin-right: $sm-gap;
           }
         }
-      }
-    }
-
-    > .about-introduce {
-      > .iframe {
-        height: 11rem;
       }
     }
   }
