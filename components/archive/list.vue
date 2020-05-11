@@ -185,9 +185,8 @@ export default {
         position: relative;
         height: $block-button-height;
         padding: 0 ($gap * 2) 0 ($gap * 3);
-        font-family: "webfont-bolder", DINRegular;
         text-transform: uppercase;
-        background: rgba($red, 0.6);
+        background: rgba(#575fcf, 0.6);
 
         &::before {
           $size: 1rem;

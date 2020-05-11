@@ -62,11 +62,11 @@
         </div>
         <div class="item">
           <i class="iconfont icon-hobby" style="color:pink" />
-          <span class="like-text">{{ '武侠古风，二次元，数码，跑步, 电影' }}</span>
+          <span class="like-text">{{ personInfo.hobby }}</span>
         </div>
         <div class="item">
           <i class="iconfont icon-address" style="color:#33ff33" />
-          <a href="#" class="address">{{'浙江 , 杭州'}}</a>
+          <a href="#" class="address">{{personInfo.address}}</a>
         </div>
         <div class="item">
           <i class="iconfont icon-friendlink" style="color:#BF3EFF" />
@@ -84,10 +84,7 @@
       <div class="gravatar" v-if="!isMobile">
         <div class="card middle">
           <div class="front">
-            <img
-              src="https://www.hawtcelebs.com/wp-content/uploads/2018/03/megan-fox-at-forever-21-in-glendale-03-23-2018-5.jpg"
-              alt
-            />
+            <img :src="personInfo.aboutmeImg" alt />
           </div>
           <div class="back">
             <div class="back-content middle">
@@ -124,16 +121,14 @@
     </a>-->
     <div class="about-introduce">
       关于我：
-      <p>92年的最后一个月，诞生于越剧发源地的一个小城市，从小到大，和大多数孩子一样，从幼儿园到高中，一路往上学习。</p>
+      <p>92年的最后一个月，诞生于越剧发源地的一个小城市，未完待续</p>
     </div>
   </div>
 </template>
 
 <script>
-// import adConfig from '~/config/ad.config'
-import appConfig from "~/config/app.config";
+import { friendLinks, personInfo } from "~/config/app.config";
 import systemConstants from "~/constants/system";
-// import { getFileCDNUrl } from '~/transformers/url'
 
 export default {
   name: "About",
@@ -146,9 +141,8 @@ export default {
   //   return store.dispatch('global/fetchAdminInfo')
   // },
   computed: {
-    appConfig: () => appConfig,
-    friendLinks: () => appConfig.friendLinks,
-
+    personInfo: () => personInfo,
+    friendLinks: () => friendLinks,
     isMobile() {
       return this.$store.state.global.isMobile;
     },
@@ -223,7 +217,7 @@ export default {
 
         > .address {
           border-bottom: 1px solid;
-          font-family: "webfont-bolder", DINRegular;
+
         }
 
         > .music {

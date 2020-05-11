@@ -6,7 +6,7 @@
 
 import marked from 'marked'
 import Hljs from '~/plugins/highlight'
-import appConfig from '~/config/app.config'
+import { meta } from '~/config/app.config'
 
 marked.setOptions({
   renderer: new marked.Renderer(),
@@ -35,7 +35,7 @@ const headingRender = (text, level, raw) => {
 
 // 对连接进行权重防流和新窗处理
 const linkRender = (href, title, text) => {
-  const isSelf = href.includes(appConfig.meta.url)
+  const isSelf = href.includes(meta.url)
   const textIsImage = text.includes('<img')
   const linkHtml = `
     <a
@@ -59,7 +59,7 @@ const imageRender = (src, title, alt) => {
     <img
       class="lozad"
       data-src="${src}"
-      title="${title || alt || appConfig.meta.url}"
+      title="${title || alt || meta.url}"
       alt="${alt || title || src}"
       onclick="if (window.utils) window.utils.openImgPopup('${src}')"
     />
@@ -75,7 +75,7 @@ const imageRender1 = (src, title, alt) => {
     <img
       class=""
       src="${src}"
-      title="${title || alt || appConfig.meta.url}"
+      title="${title || alt || meta.url}"
       alt="${alt || title || src}"
     />
   `

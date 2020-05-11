@@ -25,7 +25,7 @@
           <div>{{ $i18n.file.secret.value }}</div>
         </li>
         <li v-for="(item, index) in files" :key="index">
-          <a href="item.fileurl">
+          <a :href="item.fileurl" target="_blank"  rel="external nofollow noopener">
             <div>{{ item.name }}</div>
           </a>
           <div>{{ item.date }}</div>

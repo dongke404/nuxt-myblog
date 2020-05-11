@@ -18,7 +18,6 @@ export const actions = {
     return this.$axios
       .$get(FILE_API_PATH,{params})
       .then(response => {
-        console.log(2222,response);
         commit("updateListData", response);
       })
       .catch(() => {

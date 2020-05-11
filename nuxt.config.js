@@ -1,5 +1,5 @@
 import apiConfig from "./config/api.config";
-import appConfig from './config/app.config'
+import {meta} from './config/app.config'
 
 export default {
   mode: "universal",
@@ -7,11 +7,11 @@ export default {
     BASE: apiConfig.BASE,
   },
   head: {
-    title: `${appConfig.meta.title}`,
-    titleTemplate: `%s | ${appConfig.meta.title}`,
+    title: `${meta.title}`,
+    titleTemplate: `%s | ${meta.title}`,
     meta: [
       { charset: "utf-8" },
-      // { 'http-equiv': "Content-Security-Policy", content: "upgrade-insecure-requests" },
+      { 'http-equiv': "Content-Security-Policy", content: "upgrade-insecure-requests" },
       {
         name: "viewport",
         content: "width=device-width, initial-scale=1.0, user-scalable=no",

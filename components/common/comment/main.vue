@@ -473,7 +473,6 @@ export default {
     // 跳转到某条指定的id位置
     toSomeAnchorById(id) {
       const targetDom = document.getElementById(id);
-      console.log(targetDom);
       if (targetDom) {
         const isToEditor = id === "post-box";
         scrollTo({
@@ -549,7 +548,7 @@ export default {
       this.cancelCommentReply();
       //每次重新获取数据时都需要回到评论框顶部，因为都是新数据
       const commentboxDOM = document.getElementById("comment-box");
-      console.log(commentboxDOM.offsetTop);
+      // console.log(commentboxDOM.offsetTop);
       scrollTo({
         top: commentboxDOM.offsetTop
       });

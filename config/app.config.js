@@ -38,9 +38,8 @@ export const routerMap = {
   }
 }
 
-
 //单页显示评论条数
-export const COMMENT_NUM = 88
+export const COMMENT_NUM = 66
 
 //网站相关信息
 export const meta = {
@@ -50,12 +49,15 @@ export const meta = {
   url: 'kedong.me',
   author: 'Kirk Dong',
   email: 'dongkirk1992@gmail.com',
-  defaultgravatar: "http://www.dongkirk.xyz/static/images/uploadHead/1587315727232don.png"
+  defaultgravatar: "https://www.kedong.me/static/images/app/defaultgravatar.png"
 }
 
 //个人信息
 export const personInfo = {
-  hobby: '武侠古风，二次元，数码，跑步'
+  hobby: '武侠古风，二次元，数码，跑步',
+  aboutmeImg: "https://www.kedong.me/static/images/app/aboutme.jpg",
+  mobileAvatar: "https://www.kedong.me/static/images/app/mobileAvatar.png",
+  address: "浙江 , 杭州"
 }
 
 export const links = {
@@ -75,11 +77,4 @@ export const color = {
   primary: '#0088f5'
 }
 
-export default {
-  meta,
-  links,
-  fetch,
-  color,
-  friendLinks,
-  COMMENT_NUM
-}
+

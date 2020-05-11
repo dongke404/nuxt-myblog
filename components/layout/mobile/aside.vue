@@ -2,10 +2,10 @@
   <aside class="aside" :class="{ open: open }">
     <div class="aside-user">
       <div class="avatar">
-        <img :src="gravatar" alt="dongke" draggable="false" />
+        <img :src="mobileAvatar" alt="dongke" draggable="false" />
       </div>
       <div class="profile">
-        <h3 class="name">dongkirk</h3>
+        <h3 class="name">Kirk Dong</h3>
         <p class="slogan" v-text="$i18n.slogan.value"></p>
       </div>
     </div>
@@ -53,7 +53,7 @@
 
 <script>
 import Vue from "vue";
-import {links} from "~/config/app.config";
+import {links,personInfo} from "~/config/app.config";
 
 export default Vue.extend({
   name: "MobileAside",
@@ -68,9 +68,7 @@ export default Vue.extend({
   },
   computed: {
     links: () => links,
-    gravatar() {
-      return this.$store.state.global.adminInfo.gravatar;
-    }
+    mobileAvatar:()=>personInfo.mobileAvatar
   }
 });
 </script>

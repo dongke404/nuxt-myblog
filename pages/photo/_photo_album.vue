@@ -8,11 +8,11 @@
               <img :src="item.img" />
             </div>
             <div class="details">
-              <h3>
+              <h4>
                 {{ item.name }}
-                <br />
-                <span>{{ item.description }}</span>
-              </h3>
+
+                <div>{{ item.description }}</div>
+              </h4>
             </div>
           </div>
         </nuxt-link>
@@ -125,19 +125,19 @@ export default {
   width: 100%;
   height: 100%;
   padding-top: 20px;
-  padding-bottom: 50px;
+  padding-bottom: 20px;
 }
 
 .swiper {
-  height: 420px;
+  height: 360px;
   width: 100%;
 
   .swiper-slide {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 300px;
-    height: 380px;
+    width: 240px;
+    height:330px;
     text-align: center;
     font-weight: bold;
 
@@ -147,22 +147,22 @@ export default {
     color: black;
     .imgBx {
       width: 100%;
-      height: 300px;
+      height: 280px;
       overflow: hidden;
       img {
         width: 100%;
       }
     }
-    details {
+    .details {
       box-sizing: border-box;
-      padding: 20px;
-      h3 {
+      padding: 5px;
+      h4 {
         margin: 0;
         padding: 0;
         font-size: 20px;
-        span {
-          font-size: 16px;
-          color: #f44336;
+        div {
+          font-size: 13px;
+
         }
       }
     }

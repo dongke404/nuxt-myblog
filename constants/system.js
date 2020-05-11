@@ -41,15 +41,12 @@ export const Route = {
   SearchArchive: 'search-keyword',
   Guestbook: 'guestbook',
   About: 'about',
-  Timeline:'timeline',
-  Photo:"photo-photo_album"
+  Timeline: 'timeline',
+  Photo: "photo-photo_album"
 
 }
 
-export const ImageExt = {
-  WebP: 'webp',
-  Jpg: 'jpeg'
-}
+
 
 export const StorageField = {
   Theme: 'theme',
@@ -57,27 +54,10 @@ export const StorageField = {
   UserLikeHistory: 'user_like_history'
 }
 
-export const GAEventActions = {
-  Click: '点击',
-  View: '触及',
-  Toggle: '切换'
-}
-
-export const GAEventTags = {
-  Comment: '评论',
-  Share: '分享',
-  Tool: '部件',
-  AppPage: 'page-App',
-  AboutPage: 'page-About',
-  ServicePage: 'page-Service'
-}
 
 export default {
   Language,
   Theme,
   Route,
-  ImageExt,
   StorageField,
-  GAEventActions,
-  GAEventTags
 }

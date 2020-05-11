@@ -5,7 +5,7 @@
         v-if="photos.length"
         ref="waterfall"
         :imgsArr="photos"
-        :maxCols=6
+        :maxCols=5
         @scrollReachBottom="getData"
       >
         <div slot="waterfall-over">已经没有了</div>

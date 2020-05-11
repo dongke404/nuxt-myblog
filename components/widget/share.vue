@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import appConfig from "~/config/app.config";
+import { meta } from "~/config/app.config";
 import systemConstants from "~/constants/system";
 import apiConfig from "~/config/api.config";
 
@@ -44,6 +44,7 @@ export default {
         },
         {
           name: "twitter",
+          class: "twitter",
           url: () =>
             `https://twitter.com/share?text=${this.title()}&url=${this.url}`
         },
@@ -67,10 +68,12 @@ export default {
         },
         {
           name: "facebook",
+          class: "facebook",
           url: () => `https://www.facebook.com/sharer/sharer.php?u=${this.url}`
         },
         {
           name: "linkedin",
+          class: "linkedin",
           url: () =>
             `https://www.linkedin.com/shareArticle?title=${this.title()}&summary=${this.description()}&mini=true&url=${
               this.url
@@ -106,7 +109,7 @@ export default {
           return document.title;
         }
       } catch (error) {
-        return appConfig.meta.title;
+        return meta.title;
       }
     },
     shareWindow(social, url) {
@@ -120,7 +123,7 @@ export default {
        *
        */
       // 给打开的窗口命名
-      const windowName = `分享 ${appConfig.meta.title}`;
+      const windowName = `分享 ${meta.title}`;
       // 窗口宽度,需要设置
       const awidth = (screen.availWidth / 6) * 2;
       // 窗口高度,需要设置
@@ -173,9 +176,7 @@ export default {
       background-color: rgb(0, 94, 172);
     }
 
-    &.evernote:hover {
-      background-color: rgb(139, 224, 86);
-    }
+
 
     &.twitter:hover {
       background-color: rgb(85, 172, 238);

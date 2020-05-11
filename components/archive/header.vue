@@ -40,7 +40,6 @@ export default {
       );
     },
     currentData() {
-      // console.log(this.$route);
       if (this.$route.name === "category-category_slug") {
         return routerMap.category[this.$route.params.category_slug];
       }

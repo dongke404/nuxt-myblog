@@ -4,16 +4,11 @@
 
  */
 import i18nConfig from '~/config/i18n.config'
-// import stateConstants from '~/constants/state'
 import systemConstants from '~/constants/system'
 import { getStorageReader } from '~/utils/local-storage'
 
 
-
 const localThemeReader = getStorageReader(systemConstants.StorageField.Theme)
-// if (process.browser) {
-//   var defaultTheme = localThemeReader.get()
-// }
 
 export const state = () => ({
   // 拿本地设置过得的主题作为默认
@@ -41,13 +36,6 @@ export const state = () => ({
   onMobileSidebar: false,
 
 
-  // 开启轨迹地图
-  onMyMap: false,
-
-
-  // 服务端博主信息
-  adminInfo: {},
-
   // 服务端设置的全局配置
   appOption: {
     fetching: false,
@@ -57,7 +45,6 @@ export const state = () => ({
 
 export const getters = {
   isMobile: state => state.isMobile,
-  isWebPImage: state => state.imageExt === systemConstants.ImageExt.WebP,
 }
 
 export const mutations = {
@@ -83,10 +70,7 @@ export const mutations = {
     state.userAgent = action
   },
 
-  // 设置图片格式
-  updateImageExt(state, action) {
-    state.imageExt = action
-  },
+
 
   // 设置是否移动端状态
   updateMobileState(state, action) {
@@ -113,20 +97,6 @@ export const mutations = {
     state.appOption.data.meta.likes++
   },
 
-  // 切换弹幕状态
-  toggleUpdateBarrageOnState(state, action) {
-    state.onBarrage = action != null ? !!action : !state.onBarrage
-  },
-
-  // 切换 MyMap 状态
-  toggleMyMapOnState(state) {
-    state.onMyMap = !state.onMyMap
-  },
-
-  // 切换墙纸开关
-  toggleUpdateWallpaperOnState(state, action) {
-    state.onWallpaper = action != null ? !!action : !state.onWallpaper
-  },
 
   // 切换语言
   updateLanguage(state, action) {
@@ -138,10 +108,6 @@ export const mutations = {
     state.isZHUser = action
   },
 
-  // 服务端配置的管理员信息
-  updateAdminInfo(state, action) {
-    state.adminInfo = action.result
-  },
 
   // 服务端配置
   updateAppOptionFetching(state, action) {
@@ -162,12 +128,7 @@ export const actions = {
       .$get('/fontcss')
       .then(response => commit('updateFontcss', response))
   },
-  // 获取博主资料
-  // fetchAdminInfo({ commit }) {
-  //   return this.$axios
-  //     .$get('/auth/admin')
-  //     .then(response => commit('updateAdminInfo', response))
-  // },
+
 
   // 获取全局配置
   fetchAppOption({ commit, state }, force = false) {

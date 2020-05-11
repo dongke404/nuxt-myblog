@@ -1,15 +1,15 @@
 <template>
   <footer class="footer">
-    <div class="footer-content">©{{ year }}&nbsp;&nbsp;{{ appConfig.meta.title }}</div>
+    <div class="footer-content">©{{ year }}&nbsp;&nbsp;{{ meta.title }}</div>
   </footer>
 </template>
 
 <script>
-import appConfig from "~/config/app.config";
+import {meta} from "~/config/app.config";
 export default {
   name: "MobileFooter",
   computed: {
-    appConfig: () => appConfig,
+    meta: () => meta,
     year() {
       return new Date().getFullYear();
     }
