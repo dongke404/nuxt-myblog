@@ -1,6 +1,12 @@
-
-@mixin css-var($text, $white, $black, $primary, $body-bg, $module-hover-bg, $logo-rotate) {
-
+@mixin css-var(
+  $text,
+  $white,
+  $black,
+  $primary,
+  $body-bg,
+  $module-hover-bg,
+  $logo-rotate
+) {
   #{--body-bg}: $body-bg;
   #{--theme-black}: $black;
   #{--theme-logo-rotate}: $logo-rotate;
@@ -26,9 +32,9 @@
   #{--text-light}: lighter($text, 20%);
   #{--text-dark}: darken($text, 20%);
   #{--text-darken}: darken($text, 40%);
-  #{--text-secondary}: rgba($black, .54);
-  #{--text-disabled}: rgba($black, .38);
-  #{--text-dividers}: rgba($black, .26);
+  #{--text-secondary}: rgba($black, 0.54);
+  #{--text-disabled}: rgba($black, 0.38);
+  #{--text-dividers}: rgba($black, 0.26);
   #{--text-reversal}: $white;
 
   #{--link-color}: $text;
@@ -36,7 +42,6 @@
 }
 
 #app {
-
   &.bright {
     @include css-var(
       $text: #555,
@@ -64,7 +69,7 @@
     @include css-var(
       $text: #000,
       $white: #a7a8bd,
-      $black: #000,
+      $black: #2f90b9,
       $primary: #737c7b,
       $body-bg: #b0d5df,
       $module-hover-bg: rgba(0, 0, 0, 0.5),

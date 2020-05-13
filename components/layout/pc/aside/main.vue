@@ -158,6 +158,7 @@ export default Vue.extend({
   .aside-article,
   .aside-calendar,
   .aside-mammon,
+  // .aside-friendlink,
   .aside-tag {
     margin-bottom: $lg-gap;
     @include module-blur-bg();
@@ -308,22 +309,22 @@ export default Vue.extend({
     padding: $gap;
   }
 
-  .aside-mammon {
-    width: 100%;
+  // .aside-mammon {
+  //   width: 100%;
 
-    &.alimama {
-      height: $aside-width;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+  //   &.alimama {
+  //     height: $aside-width;
+  //     display: flex;
+  //     justify-content: center;
+  //     align-items: center;
 
-      > .mammon-iframe {
-        height: 250px;
-        width: 250px;
-        overflow: hidden;
-      }
-    }
-  }
+  //     > .mammon-iframe {
+  //       height: 250px;
+  //       width: 250px;
+  //       overflow: hidden;
+  //     }
+  //   }
+  // }
 
   .aside-sticky-box {
     $top-height: $header-height + $lg-gap;
@@ -384,7 +385,6 @@ export default Vue.extend({
 
           .title {
             display: flex;
-     
 
             .iconfont {
               width: 2em;
@@ -403,6 +403,14 @@ export default Vue.extend({
         }
       }
     }
+    // > .aside-friendlink {
+    //   ul {
+    //     list-style: none;
+    //   }
+    //   padding-left: $gap;
+    //   border-top: $gap solid transparent;
+    //   border-bottom: $gap solid transparent;
+    // }
   }
 }
 </style>

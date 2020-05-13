@@ -9,8 +9,8 @@
           </p>
         </div>
         <div class="item">
-          <i class="iconfont icon-sponsor" style="color:gold"></i>
-          <a target="_blank" href="#" rel="external nofollow noopenter">PayPal me</a>
+          <i class="iconfont icon-email" style="color:blue"></i>
+          {{personInfo.email}}
         </div>
         <div class="item">
           <i class="iconfont icon-music" style="color:green" />
@@ -48,7 +48,7 @@
                 <i class="iconfont icon-twitter" />
                 <span class="text">Twitter</span>
               </a>
-              <a href="#" target="_blank" class="item instagram" rel="external nofollow noopenter">
+              <a href="https://www.instagram.com/dongkirk1992/?hl=en" target="_blank" class="item instagram" rel="external nofollow noopenter">
                 <i class="iconfont icon-instagram" />
                 <span class="text">Instagram</span>
               </a>
@@ -88,7 +88,7 @@
           </div>
           <div class="back">
             <div class="back-content middle">
-              <h2>DongKirk</h2>
+              <h2>Kirk Dong</h2>
               <span>计算机菜鸟</span>
               <div class="sm">
                 <a href>
@@ -121,7 +121,12 @@
     </a>-->
     <div class="about-introduce">
       关于我：
-      <p>92年的最后一个月，诞生于越剧发源地的一个小城市，未完待续</p>
+      <div style="height:5px"></div>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;90后，出身浙江绍兴一小城市，巴塞罗那球迷，不抽烟，不喝酒，目前单身可撩</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;回顾我的前半生，真是平凡无奇。从小学到高中，在马化腾和各位其他大佬的产品熏陶下茁壮成长（手动狗头），大学远赴外省学习自动化专业。自此走上了一条宅的路。</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;直到大学毕业，我也不知道自己真正想要做什么，在历史的洪流中随波逐流。</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;18年，开始对自己人生产生想法，完成了第一个目标，把过去养的膘给剔除了。19年，决心辞职，给自己定了职业目标。</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;路漫漫其修远兮，吾将上下而求索!</p>
     </div>
   </div>
 </template>
@@ -142,7 +147,7 @@ export default {
   // },
   computed: {
     personInfo: () => personInfo,
-    friendLinks: () => friendLinks,
+    friendLinks: ()=>friendLinks,
     isMobile() {
       return this.$store.state.global.isMobile;
     },
@@ -217,7 +222,6 @@ export default {
 
         > .address {
           border-bottom: 1px solid;
-
         }
 
         > .music {
@@ -368,6 +372,7 @@ export default {
         transition: transform 0.6s linear;
       }
       .front img {
+        width: 100%;
         height: 100%;
       }
       .front {
@@ -414,7 +419,7 @@ export default {
     position: relative;
     overflow: hidden;
     width: 100%;
-    padding: $sm-gap;
+    padding: $lg-gap;
     margin-bottom: $lg-gap;
     background-color: $module-bg;
   }

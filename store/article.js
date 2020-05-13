@@ -124,8 +124,10 @@ export const actions = {
     return this.$axios
       .$get(`${ARTICLE_API_PATH}/${params.article_id}`)
       .then(response => {
-        commit('updateDetailData', response.data)
-        !process.browser && commit('updateDetailFetchig', false)
+          commit('updateDetailData', response.data)
+          !process.browser && commit('updateDetailFetchig', false)
+          return  Promise.resolve(response)
+
       })
       .catch(error => {
         commit('updateDetailFetchig', false)

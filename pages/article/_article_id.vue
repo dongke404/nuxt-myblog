@@ -153,7 +153,12 @@ export default {
     return Promise.all([
       store
         .dispatch("article/fetchDetail", params)
-        .catch(err => error({ statusCode: 404 })),
+        .then(res => {
+          if (res.status === 404) {
+            error({ statusCode: 404 });
+          }
+        })
+        .catch(err => error({ statusCode: 500 })),
       store.dispatch("comment/fetchList", { post_id: params.article_id }),
       store.dispatch("article/showsDelay")
     ]);
@@ -161,7 +166,7 @@ export default {
 
   head() {
     return {
-      title: this.article?.title || "...",
+      title: this.article?.title || "..."
     };
   },
   data() {

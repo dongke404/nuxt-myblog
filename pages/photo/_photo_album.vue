@@ -10,7 +10,6 @@
             <div class="details">
               <h4>
                 {{ item.name }}
-
                 <div>{{ item.description }}</div>
               </h4>
             </div>
@@ -137,11 +136,12 @@ export default {
     justify-content: center;
     align-items: center;
     width: 240px;
-    height:330px;
+    height: 330px;
+
     text-align: center;
     font-weight: bold;
 
-    background-color: #fff;
+    background-color: $body-bg;
     background-position: center;
     background-size: cover;
     color: black;
@@ -162,7 +162,6 @@ export default {
         font-size: 20px;
         div {
           font-size: 13px;
-
         }
       }
     }

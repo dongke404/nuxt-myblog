@@ -51,7 +51,8 @@ export default {
   data() {
     return {
       ispaused: false,
-      currIndex: 0
+      currIndex: 0,
+      errMusic: 0
     };
   },
   computed: {
@@ -100,7 +101,13 @@ export default {
       }
     },
     error() {
-      this.playNext();
+      if (this.errMusic === 100) {
+        this.ispaused = true;
+        this.errMusic = 0;
+      } else {
+        this.playNext();
+        this.errMusic += 1;
+      }
     }
   }
 };

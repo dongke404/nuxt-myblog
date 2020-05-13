@@ -3,16 +3,17 @@
     class="header-box"
     :class="{
       mobile: isMobile,
-      theme
+
     }"
     :style="{
-      'background-image': `url(${currentData.backgroundImg})`
+      'background-image': `url(${currentData.backgroundImg})`,
+      'color':'white'
     }"
   >
     <div class="logo-box">
       <p class="logo">
         <transition name="module" mode="out-in">
-          <i :class="`iconfont icon-${currentData.icon}`"></i>
+          <i :class="`iconfont icon-${currentData.icon} `"></i>
         </transition>
       </p>
     </div>
@@ -78,10 +79,6 @@ export default {
   background-color: $module-hover-bg-darken-10;
   background-position: center center;
   color: $text-reversal;
-
-  &.dark {
-    color: $text;
-  }
 
   &.mobile {
     height: 12rem;

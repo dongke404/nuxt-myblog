@@ -48,16 +48,17 @@ export const meta = {
   description: '',
   url: 'kedong.me',
   author: 'Kirk Dong',
-  email: 'dongkirk1992@gmail.com',
   defaultgravatar: "https://www.kedong.me/static/images/app/defaultgravatar.png"
 }
 
 //个人信息
 export const personInfo = {
-  hobby: '武侠古风，二次元，数码，跑步',
+  hobby: '武侠古风，二次元，数码，跑步,游戏',
   aboutmeImg: "https://www.kedong.me/static/images/app/aboutme.jpg",
   mobileAvatar: "https://www.kedong.me/static/images/app/mobileAvatar.png",
-  address: "浙江 , 杭州"
+  address: "浙江 , 杭州",
+  email: 'dongkirk1992@gmail.com',
+
 }
 
 export const links = {

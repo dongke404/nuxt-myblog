@@ -17,6 +17,12 @@
         @click="selectType"
       >{{ item }}</span>
     </nav>
+    <div >
+      &nbsp;&nbsp;
+      <a target="_blank" href="https://www.kedong.me/static/images/app/payforme.jpg" rel="external nofollow noopenter">
+        <i class="iconfont icon-sponsor" style="color:gold"></i>&nbsp;&nbsp;友情支持
+      </a>
+    </div>
     <div class="file-body">
       <ul class="list">
         <li>
@@ -25,7 +31,7 @@
           <div>{{ $i18n.file.secret.value }}</div>
         </li>
         <li v-for="(item, index) in files" :key="index">
-          <a :href="item.fileurl" target="_blank"  rel="external nofollow noopener">
+          <a :href="item.fileurl" target="_blank" rel="external nofollow noopener">
             <div>{{ item.name }}</div>
           </a>
           <div>{{ item.date }}</div>
@@ -136,12 +142,12 @@ export default {
 }
 .file-category {
   display: inline-block;
-  margin: 2px;
-  padding: 3px;
+  margin: 2px 0px 2px 8px;
+  padding: 5px;
   color: $text;
   font-size: $font-size-root;
   border-radius: 8px;
-  border: 1px solid $text;
+  border: 1px  $text;
 }
 .file-search {
   float: right;
@@ -199,7 +205,7 @@ export default {
   margin: 0 5px 0 5px;
 }
 .page-active {
-  border: solid $text 1px;
+  font-weight: 700;
   border-radius: 6px;
 }
 </style>
