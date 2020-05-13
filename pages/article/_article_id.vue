@@ -193,6 +193,11 @@ export default {
       this.observeLozad("article-content");
     }
   },
+  watch: {
+    $route(newVel, oldVel) {
+      this.observeLozad("article-content");
+    }
+  },
   computed: {
     ...mapState({
       tags: state => state.tag.data,
