@@ -17,7 +17,7 @@
           <span class="music">
             <nuxt-link to="/music">Rap, Rock, Popular</nuxt-link>
             <a
-              href="https://music.163.com/#/playlist?id=638949385"
+              href="https://music.163.com/#/playlist?id=4992612670"
               target="_blank"
               class="music-163"
               rel="external nofollow noopenter"
