@@ -43,37 +43,15 @@
         </li>
       </ul>
     </div>
-    <!-- 广告栏 -->
-    <!-- <client-only>
-      <aside-ad
-        ref="asideAd"
-        @slide-change="handleSlideChange"
-      />
-    </client-only>-->
+    <!-- 这里添加广告栏 -->
     <!-- 日历 -->
     <div class="aside-calendar">
       <calendar />
     </div>
-    <!-- 广告栏 -->
-    <!-- <transition name="module">
-      <div key="ad" class="aside-mammon alimama">
-        <iframe
-          scrolling="no"
-          frameborder="0"
-          class="mammon-iframe"
-          src="/partials/mammon/aside.html"
-        />
-      </div>
-    </transition>-->
+    <!-- 这里添加广告栏 -->
     <div class="aside-sticky-box">
-      <!-- 广告栏 -->
-      <!-- <client-only>
-        <aside-ad
-          v-if="renderStickyAd"
-          :init-index="adIndex"
-          @slide-change="handleChangeAdSwiper"
-        />
-      </client-only>-->
+      <!-- 这里添加广告栏 -->
+      <!-- 标签版块 -->
       <div class="aside-tag">
         <empty-box v-if="!tags.length">
           <slot>{{ $i18n.text.tag.empty.value }}</slot>
@@ -92,6 +70,13 @@
           </li>
         </ul>
       </div>
+      <!-- 友情链接版块 -->
+      <div class="aside-friendlink">
+        <span>友情链接</span>
+        <div class="tag-items">
+          <a v-for="item in friendlinks" :key="item.name" :href="item.link" target="_blank" rel="external nofollow noopenter">{{item.name}}</a>
+        </div>
+      </div>
     </div>
   </aside>
 </template>
@@ -108,7 +93,6 @@ let stickyEvents = null;
 export default Vue.extend({
   name: "PcAside",
   components: {
-    // AsideAd,
     Calendar
   },
   data() {
@@ -120,6 +104,7 @@ export default Vue.extend({
   },
   mounted() {
     //将关键字设置为服务端进来的路由
+    console.log(this.$store.state.global)
     if (this.$route.name === Route.SearchArchive) {
       this.keyword = this.$route.params.keyword;
     }
@@ -129,7 +114,8 @@ export default Vue.extend({
     ...mapState({
       tags: state => state.tag.data,
       articles: state => state.article.hotList.data.data,
-      language: state => state.global.language
+      language: state => state.global.language,
+      friendlinks: state =>  state.global.appOption.data.friendlinks||[]
     })
   },
   methods: {
@@ -157,8 +143,7 @@ export default Vue.extend({
   .aside-search,
   .aside-article,
   .aside-calendar,
-  .aside-mammon,
-  // .aside-friendlink,
+  .aside-friendlink,
   .aside-tag {
     margin-bottom: $lg-gap;
     @include module-blur-bg();
@@ -309,23 +294,6 @@ export default Vue.extend({
     padding: $gap;
   }
 
-  // .aside-mammon {
-  //   width: 100%;
-
-  //   &.alimama {
-  //     height: $aside-width;
-  //     display: flex;
-  //     justify-content: center;
-  //     align-items: center;
-
-  //     > .mammon-iframe {
-  //       height: 250px;
-  //       width: 250px;
-  //       overflow: hidden;
-  //     }
-  //   }
-  // }
-
   .aside-sticky-box {
     $top-height: $header-height + $lg-gap;
     $tool-height: 3rem;
@@ -334,7 +302,6 @@ export default Vue.extend({
     width: $aside-width;
 
     > .aside-tag {
-      margin-bottom: 0;
       max-height: calc(
         100vh - 88px - #{$top-height + $lg-gap + $lg-gap + $tool-height}
       );
@@ -403,14 +370,22 @@ export default Vue.extend({
         }
       }
     }
-    // > .aside-friendlink {
-    //   ul {
-    //     list-style: none;
-    //   }
-    //   padding-left: $gap;
-    //   border-top: $gap solid transparent;
-    //   border-bottom: $gap solid transparent;
-    // }
+    > .aside-friendlink {
+      padding-left: $gap;
+      border-top: $gap solid transparent;
+      border-bottom: $gap solid transparent;
+      span{
+        font-size: 16px;
+      }
+      >.tag-items {
+        a {
+          display: inline-block;
+          padding: 5px;
+          border: #dfe6e9 solid 1px ;
+          margin: 4px 2px 4px 0px;
+        }
+      }
+    }
   }
 }
 </style>

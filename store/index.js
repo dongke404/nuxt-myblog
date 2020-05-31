@@ -17,6 +17,7 @@ export const actions = {
     // 初始化时的全局任务
     const initFetchAppData = [
       // 内容数据
+      store.dispatch('global/fetchAppOption'),
       store.dispatch('global/fetchFontcss'),
       store.dispatch('tag/fetchList'),
       store.dispatch("music/fetchList"),

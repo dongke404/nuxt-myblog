@@ -385,10 +385,6 @@ export default {
         this.historyLikes = historyLikes;
       }
     },
-    // 初始化黑名单
-    initAppOptionBlackList() {
-      this.$store.dispatch("global/fetchAppOption");
-    },
     loadCommentsAnimateDone() {
       this.observeLozad();
     },
@@ -624,7 +620,6 @@ export default {
     // 2. 组件仅负责初评论列表数据翻页、排序的职责
     // 3. 当容器组件还在请求时，组件全量 Loading
     // 4. 当只有评论列表在请求时，列表单独 Loading
-    this.initAppOptionBlackList();
     if (process.browser) {
       this.observeLozad();
       this.initUser();

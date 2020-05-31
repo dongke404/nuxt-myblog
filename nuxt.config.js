@@ -22,6 +22,10 @@ export default {
         name: "description",
         content: process.env.npm_package_description || "",
       },
+      {
+        name:"google-site-verification",
+        content:"7wzBsyvulUETi8pO6N7wo7mZvkmdmhRFH6hcP0yBts4"
+      }
     ],
     link: [
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },

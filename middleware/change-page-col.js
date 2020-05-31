@@ -1,6 +1,7 @@
 import { Route } from '~/constants/system'
 
 export default ({ route, store }) => {
+  
   // columns
   const isTwoColumns = [
     Route.About,

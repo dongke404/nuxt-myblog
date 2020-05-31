@@ -29,7 +29,9 @@ export default Vue.extend({
       return this.$store.state.global.isMobile;
     }
   },
-  mounted() {}
+  mounted() {
+
+  }
 });
 </script>
 
