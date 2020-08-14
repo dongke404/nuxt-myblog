@@ -57,6 +57,9 @@ export const mutations = {
   updateDetailData(state, action) {
     state.detail.data = action
   },
+  updateisPrivacy(state, action){
+    state.detail.isPrivacy = action
+  },
 
   // 喜欢某篇文章
   updateLikesIncrement(state) {
@@ -115,19 +118,26 @@ export const actions = {
   // 获取文章详情
   fetchDetail({ commit }, params = {}) {
     if (process.browser) {
+      console.log("浏览器")
       Vue.nextTick(() => {
         scrollTo(0, 300)
       })
+
     }
+    this.$axios.defaults.withCredentials=true
     commit('updateDetailFetchig', true)
     commit('updateDetailData', {})
     return this.$axios
       .$get(`${ARTICLE_API_PATH}/${params.article_id}`)
       .then(response => {
+         if(response.status===403){
+          commit('updateisPrivacy',false)
+          }else{
+          commit('updateisPrivacy',true)
+          }
           commit('updateDetailData', response.data)
           !process.browser && commit('updateDetailFetchig', false)
           return  Promise.resolve(response)
-
       })
       .catch(error => {
         commit('updateDetailFetchig', false)

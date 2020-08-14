@@ -13,8 +13,18 @@
         </client-only>
       </div>
       <div v-show="!isFetching" key="knowledge" class="knowledge">
-        <h2 class="title">{{ article.title }}</h2>
-        <div id="article-content" key="article-content" class="content" v-html="articleContent"></div>
+        <template v-if="isPrivacy">
+          <h2 class="title">{{ article.title }}</h2>
+          <div id="article-content" key="article-content" class="content" v-html="articleContent"></div>
+        </template>
+        <template v-else>
+          <div class="inputBox">
+            <h2>查看此文章需要输入密码</h2>
+            <input type="password" v-model="authPwd" placeholder="请输入密码">
+            <div id="btn"  @click="savAauthPwd">确定</div>
+            <!-- <button @click="savAauthPwd">确定</button> -->
+          </div>
+        </template>
       </div>
     </div>
     <div class="share">
@@ -33,7 +43,7 @@
       </transition>
     </div>
     <transition name="module" mode="out-in">
-      <template>
+      <template v-if="isPrivacy">
         <div v-if="isFetching" key="skeleton" class="metas">
           <skeleton-paragraph :align="true" :lines="4" line-height="1.2em" />
         </div>
@@ -123,7 +133,7 @@
         </ul>
       </div>
     </transition>
-    <div class="comment">
+    <div v-if="isPrivacy" class="comment">
       <comment-box
         :fetching="isFetching"
         :post-id="routeArticleId"
@@ -136,6 +146,7 @@
 <script>
 import { mapState } from "vuex";
 import { OriginState } from "~/constants/system";
+import {setCookie} from "~/utils/cookie"
 import lozad from "~/plugins/lozad";
 import marked from "~/plugins/marked";
 import ShareBox from "~/components/widget/share";
@@ -171,6 +182,7 @@ export default {
   },
   data() {
     return {
+      authPwd:"",
       swiperOption: {
         setWrapperSize: true,
         simulateTouch: false,
@@ -189,7 +201,7 @@ export default {
     };
   },
   mounted() {
-    if (process.browser) {
+    if (process.browser && this.isPrivacy) {
       this.observeLozad("article-content");
     }
   },
@@ -203,6 +215,7 @@ export default {
       tags: state => state.tag.data,
       article: state => state.article.detail.data,
       isFetching: state => state.article.detail.fetching,
+      isPrivacy:state => state.article.detail.isPrivacy,
       isMobile: state => state.global.isMobile
     }),
 
@@ -265,6 +278,10 @@ export default {
     hiddenImg(e) {
       e.target.parentNode.removeChild(e.target);
       // e.target.style.display="none"
+    },
+    savAauthPwd(){
+      setCookie("authPwd",this.authPwd,60*60*24)
+      location.reload();
     }
   }
 };
@@ -272,6 +289,58 @@ export default {
 
 <style lang="scss">
 // workaround css scoped
+.inputBox{
+  width: 450px;
+  margin: 0 auto;
+}
+.inputBox h2{
+  font-size:28px;
+  color: #333;
+  margin-bottom: 10px;;
+}
+
+.inputBox input{
+  position: relative;
+  width:100% ;
+  height: 60px;
+  border: none;
+  margin: 15px 0 20px;
+  background: transparent;
+  outline: none;
+  padding: 0 20px;
+  font-size: 24px;
+  letter-spacing: 4px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  color:#333;
+  box-shadow: -4px -4px 10px rgba(255,255,255,1),
+              inset 4px 4px 10px rgba(0,0,0,0.05),
+              inset -4px -4px 10px rgba(255,255,255,1),
+              4px 4px 10px rgba(0,0,0,0.05);
+}
+
+.inputBox input::-webkit-input-placeholder{
+  letter-spacing: 0px;
+  font-size: 20px;
+}
+
+.inputBox #btn{
+  position: relative;
+  cursor: pointer;
+  color: #fff;
+  background: #333;
+  font-size: 20px;
+  display: inline-block;
+  padding: 10px 15px;
+  border-radius: 8px ;
+  user-select: none;
+}
+
+.inputBox #btn:active{
+background: #9c27b0;
+user-select: none;
+}
+
 .article-page {
   .share-box {
     .share-ejector {

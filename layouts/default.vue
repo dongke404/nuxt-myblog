@@ -30,7 +30,7 @@ export default Vue.extend({
     }
   },
   mounted() {
-
+    this.$axios.defaults.withCredentials=true
   }
 });
 </script>
