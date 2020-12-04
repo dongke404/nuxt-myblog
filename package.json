@@ -16,7 +16,7 @@
     "@nuxtjs/style-resources": "^1.0.0",
     "dayjs": "^1.8.25",
     "gravatar": "^1.8.0",
-    "highlight.js": "^9.18.1",
+    "highlight.js": "^10.4.1",
     "lozad": "^1.14.0",
     "marked": "^0.8.2",
     "nuxt": "^2.0.0",
