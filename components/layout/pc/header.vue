@@ -59,7 +59,7 @@ export default {
     audio() {
       return this.$store.state.music.data
         .map(item => {
-          console.log(123,item)
+          // console.log(123,item)
           let res = {};
           res.name = item.name;
           // res.artist = item.ar[0].name;
@@ -72,7 +72,7 @@ export default {
         });
     },
     currMusic() {
-      console.log(this.audio)
+      // console.log(this.audio)
       return this.audio[this.currIndex];
     },
     mLength() {
