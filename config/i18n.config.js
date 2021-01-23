@@ -227,7 +227,7 @@ export default {
           jp: ""
         },
         hotlist: {
-          zh: "百家争鸣",
+          zh: "热火朝天",
           en: "hot",
           jp: ""
         },

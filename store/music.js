@@ -9,22 +9,32 @@ export const state = () => {
 
 export const mutations = {
   updateListData(state, action) {
-    state.data = action.playlist.tracks
+    state.data = action
   }
 }
 
 export const actions = {
   fetchList({ commit }) {
- 
-    return this.$axios
+    let prom=new Promise((reslove,rej)=>{
+      this.$axios
       .$get(apiconfig.MUSIC)
       .then(response => {
-        if (response.code===200){
-          commit('updateListData', response)
+        let ids=response.playlist.trackIds
+        let idslist =[]
+        for (const item of ids) {
+          idslist.push(item.id)
         }
+        let idstr = idslist.join(",")
+        this.$axios.$get(`http://www.dongkirk.xyz/song/detail?ids=${idstr}`).then(res=>{
+          if (response.code===200){
+            reslove(res.songs)
+          }
+        })
+
       })
-      .catch(() => {
-        alert("音乐列表请求失败")
-      })
+    })
+    return prom.then(v=>{
+      commit('updateListData', v)
+    })
   }
 }

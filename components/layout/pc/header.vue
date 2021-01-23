@@ -39,7 +39,7 @@
         <div
           class="song"
           :title="currMusic.name"
-        >歌名:{{currMusic.name}}&nbsp;&nbsp;歌手:{{currMusic.artist}}</div>
+        >歌名:{{currMusic.name}}&nbsp;&nbsp;</div>
       </div>
     </div>
   </header>
@@ -59,9 +59,11 @@ export default {
     audio() {
       return this.$store.state.music.data
         .map(item => {
+          console.log(123,item)
           let res = {};
           res.name = item.name;
-          res.artist = item.ar[0].name;
+          // res.artist = item.ar[0].name;
+          res.artist = item.artist
           res.url = `https://music.163.com/song/media/outer/url?id=${item.id}`;
           return res;
         })
@@ -70,6 +72,7 @@ export default {
         });
     },
     currMusic() {
+      console.log(this.audio)
       return this.audio[this.currIndex];
     },
     mLength() {
