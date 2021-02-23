@@ -7,14 +7,14 @@
         <wallflower />
         <language />
         <theme-switch />
-        <small-tool />
+        <small-tool v-if="!showSmalltool" />
         <share-box class="sidebar-share" v-if="!isFullViewWidth" />
       </figure>
     </client-only>
     <Header />
     <main id="main" class="main-container" :class="{
         'full-view': isFullViewWidth}">
-      <nav-view v-if="!isThreeColumns" />
+      <nav-view v-if="!isThreeColumns && !isFullViewWidth" />
       <div
         id="main-content"
         class="main-content"
@@ -26,7 +26,7 @@
       >
         <nuxt :nuxt-child-key="$route.name" />
       </div>
-      <aside-view v-if="!isTwoColumns && !isThreeColumns" key="aside" />
+      <aside-view v-if="!isTwoColumns && !isThreeColumns && !isFullViewWidth" key="aside" />
     </main>
     <footer-view v-if="!isFullViewWidth" />
   </div>
@@ -65,13 +65,17 @@ export default {
       // "onMyMap",
       // "onWallpaper",
       "isTwoColumns",
-      "isThreeColumns"
+      "isThreeColumns",
+      "isFullViewWidth"
     ]),
-    isNotFullColPage() {
-      return ![Route.Music, Route.Service].includes(this.$route.name);
-    },
-    isFullViewWidth() {
-      return this.$route.name === Route.Photo;
+    // isNotFullColPage() {
+    //   return ![Route.Music, Route.Service].includes(this.$route.name);
+    // },
+    // isFullViewWidth() {
+    //   return this.$route.name === Route.Photo || this.$route.name === Route.Movie;
+    // },
+    showSmalltool(){
+       return this.$route.name === Route.Movie ;
     },
     fontcss() {
       return this.$store.state.global.fontcss.fontcss;
@@ -145,7 +149,7 @@ export default {
     .main-content {
       width: $main-width;
       position: relative;
-      overflow: hidden;
+      // overflow: hidden;
       transition: none;
 
       &:-moz-full-screen {

@@ -25,6 +25,7 @@ export const state = () => ({
   // 页面的栏目展示类型（3栏/2栏）
   isTwoColumns: false,
   isThreeColumns: false,
+  isFullViewWidth:false,
 
   // 是否为移动端
   isMobile: false,
@@ -90,6 +91,15 @@ export const mutations = {
   // 设置三栏页面结构
   updateThreeColumnsState(state, action) {
     state.isThreeColumns = action
+  },
+  // 设置两栏页面结构
+  updateTwoColumnsState(state, action) {
+    state.isTwoColumns = action
+  },
+
+  // 设置满屏页面结构
+  updateFullColumnsState(state, action) {
+    state.isFullViewWidth = action
   },
 
   // 喜欢本站

@@ -37,6 +37,10 @@
         <i class="iconfont icon-personInfo"></i>
         <span class="text" v-text="$i18n.nav.about.value"></span>
       </nuxt-link>
+      <nuxt-link to="/movie" class="item">
+        <i class="iconfont icon-personInfo"></i>
+        <span class="text" v-text="$i18n.nav.movie.value"></span>
+      </nuxt-link>
 
       <a
         :href="links.Mysite"

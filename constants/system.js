@@ -42,8 +42,8 @@ export const Route = {
   Guestbook: 'guestbook',
   About: 'about',
   Timeline: 'timeline',
-  Photo: "photo-photo_album"
-
+  Photo: "photo-photo_album",
+  Movie:"movie-movie_name"
 }
 
 

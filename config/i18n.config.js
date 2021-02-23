@@ -75,6 +75,11 @@ export default {
         zh: "山外小楼",
         en: "guestbook",
         jp: "伝言"
+      },
+      movie: {
+        zh: "私人电影",
+        en: "movie",
+        jp: "电影"
       }
     },
     metas: {

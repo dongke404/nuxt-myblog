@@ -47,6 +47,7 @@ export default {
     "~assets/styles/app.scss",
     "swiper/css/swiper.css",
     "highlight.js/styles/night-owl.css",
+    'video.js/dist/video-js.css'
   ],
   /*
    ** Plugins to load before mounting the App
@@ -96,5 +97,6 @@ export default {
     { src: "~/plugins/waterfall.js", mode: "client" },
     { src: "~/plugins/paginate.js", mode: "client" },
     { src: '~/plugins/copy', mode: 'client' },
+    { src: '~/plugins/player.js', ssr: false }
   ],
 };
