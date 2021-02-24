@@ -11,8 +11,8 @@ const apisMap = {
     MUSIC: 'http://www.dongkirk.xyz/playlist/detail?id=4992612670'
   },
   production: {
-    FE: 'https://kedong.me',
-    BASE: 'https://kedong.me/api',
+    FE: 'https://www.kedong.me',
+    BASE: 'https://www.kedong.me/api',
     MUSIC: 'http://www.dongkirk.xyz/playlist/detail?id=4992612670'
   }
 }

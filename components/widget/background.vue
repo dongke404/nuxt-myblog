@@ -27,10 +27,11 @@ export default {
     position: absolute;
     width: 100%;
     height: 100%;
-    opacity: 0.3;
-    background: url("https://www.kedong.me/static/images/app/background.jpg");
+    opacity: 0.4;
+    background: url("https://www.kedong.me/static/images/app/background.jpg") no-repeat;
+    background-size:cover;
     &.dark {
-      opacity: 0.2;
+      opacity: 0.3;
     }
   }
 }

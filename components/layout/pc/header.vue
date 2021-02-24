@@ -8,7 +8,7 @@
         <span class="header-slogan">{{$i18n.slogan.value}}</span>
         <nuxt-link to="/" class="header-link" :title="$i18n.slogan.value" />
       </div>
-      <div class="header-player">
+      <div class="header-player" v-if="showMusic">
         <audio
           ref="audio"
           :src="currMusic.url"
@@ -19,7 +19,7 @@
           @error="error"
         ></audio>
       </div>
-      <div class="panel">
+      <div class="panel" v-if="showMusic">
         <div class="button">
           <button @click="playPre">
             <i class="iconfont icon-music-prev"></i>
@@ -48,6 +48,12 @@
 <script>
 export default {
   name: "PcHeader",
+  props: {
+    showMusic: {
+      type: Boolean,
+      default: true
+    }
+  },
   data() {
     return {
       ispaused: false,

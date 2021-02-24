@@ -1,7 +1,7 @@
 <template>
   <div class="movie-container">
     <div class="head">
-      电影名
+      {{currMovie}}
     </div>
     <div class="body">
       <div class="video-player-box"
@@ -20,8 +20,8 @@
           v-video-player:myVideoPlayer="playerOptions">
       </div>
       <div class="movielist">
-        <div @click="change">电影列表</div>
-        <div v-for="item in movielist">
+        <div >电影列表</div>
+        <div v-for="item in movielist" @click="change(item)">
           {{item}}
         </div>
       </div>
@@ -35,20 +35,18 @@
       return {
         // component options
         playsinline: true,
-
+        currMovie: "",
         // videojs options
         playerOptions: {
           width:960,
+          heighht:480,
           muted: true,
           language: 'en',
           playbackRates: [0.7, 1.0, 1.5, 2.0],
           sources: [{
             type: "video/mp4",
-            src: "https://www.kedong.me/static/video/金福南.mp4"
+            src: ""
           },
-          { src: 'https://vjs.zencdn.net/v/oceans.mp4', type: 'video/mp4'},
-          { src: 'https://vjs.zencdn.net/v/oceans.webm', type: 'video/webm'},
-          { src: 'https://vjs.zencdn.net/v/oceans.ogv', type: 'video/ogg'}
           ],
           // poster: "/static/images/author.jpg",
         }
@@ -67,14 +65,19 @@
     },
 
     mounted() {
+      this.currMovie = this.movielist[0]
+      this.playerOptions.sources=[
+          { src: `https://www.kedong.me/static/video/${this.movielist[0]}`, type: 'video/mp4'},
+          ]
       console.log('this is current player instance object', this.myVideoPlayer)
     },
     methods: {
-      change(){
-        console.log('change')
-        this.playerOptions.sources= [
-          { src: 'https://vjs.zencdn.net/v/oceans.mp4', type: 'video/mp4'},
+      change(item){
+        console.log(`https://www.kedong.me/static/video/${item}`)
+        this.playerOptions.sources=[
+          { src: `https://www.kedong.me/static/video/${item}`, type: 'video/mp4'},
           ]
+        this.$forceUpdate();
       },
       // listen event
       onPlayerPlay(player) {
