@@ -38,7 +38,7 @@
         <span class="text" v-text="$i18n.nav.about.value"></span>
       </nuxt-link>
       <nuxt-link to="/movie" class="item">
-        <i class="iconfont icon-personInfo"></i>
+        <i class="iconfont icon-movie"></i>
         <span class="text" v-text="$i18n.nav.movie.value"></span>
       </nuxt-link>
 
@@ -146,14 +146,6 @@ export default {
         line-height: 5rem;
         border-bottom: 1px dashed $module-hover-bg;
         margin: 0;
-      }
-
-      &.holiday {
-        color: red;
-      }
-
-      &.taobao {
-        color: #ff5000;
       }
 
       &.aliyun {

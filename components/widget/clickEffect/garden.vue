@@ -35,7 +35,8 @@ export default {
         "爱国",
         "敬业",
         "诚信",
-        "友善"
+        "友善",
+        "咩咩"
       ],
       contentIndex: -1
     };

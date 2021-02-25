@@ -32,7 +32,7 @@ export default {
       {
         rel: "styleSheet",
         type: "text/css",
-        href: "//at.alicdn.com/t/font_1755605_vy3im8w00hh.css",
+        href: "//at.alicdn.com/t/font_1755605_r1c9zcl8xc8.css",
       },
     ],
   },

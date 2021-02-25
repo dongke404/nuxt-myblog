@@ -77,9 +77,9 @@ export default {
         jp: "伝言"
       },
       movie: {
-        zh: "私人电影",
+        zh: "海市蜃楼",
         en: "movie",
-        jp: "电影"
+        jp: "フィルム"
       }
     },
     metas: {
