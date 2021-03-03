@@ -97,6 +97,7 @@ export default {
     { src: "~/plugins/waterfall.js", mode: "client" },
     { src: "~/plugins/paginate.js", mode: "client" },
     { src: '~/plugins/copy', mode: 'client' },
-    { src: '~/plugins/player.js', ssr: false }
+    { src: '~/plugins/player.js', ssr: false },
+    { src: '~/plugins/xgplayer.js', ssr: false }
   ],
 };

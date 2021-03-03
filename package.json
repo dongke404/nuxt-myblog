@@ -28,7 +28,8 @@
     "vue-cute-timeline": "^1.2.8",
     "vue-video-player": "^5.0.2",
     "vue-waterfall": "^1.0.6",
-    "vuejs-paginate": "^2.1.0"
+    "vuejs-paginate": "^2.1.0",
+    "xgplayer-vue": "^1.1.5"
   },
   "devDependencies": {
     "node-sass": "^4.14.0",
