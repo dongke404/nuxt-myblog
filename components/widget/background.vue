@@ -1,8 +1,8 @@
 <template>
   <div id="background">
     <client-only>
-      <div class="background-image"></div>
-      <vue-canvas-nest :config="{color:'244,62,6',count: 99,opacity:0.7}"></vue-canvas-nest>
+      <div class="background-image" style=""></div>
+      <!-- <vue-canvas-nest :config="{color:'244,62,6',count: 99,opacity:0.7}"></vue-canvas-nest> -->
     </client-only>
   </div>
 </template>
@@ -23,11 +23,12 @@ export default {
   z-index: $z-index-underground;
   background-color: $body-bg;
 
+
   > .background-image {
     position: absolute;
     width: 100%;
     height: 100%;
-    opacity: 0.4;
+    opacity: 0.7;
     background: url("https://www.kedong.me/static/images/app/background.jpg") no-repeat;
     background-size:cover;
     &.dark {

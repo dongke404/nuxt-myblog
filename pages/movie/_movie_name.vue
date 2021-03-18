@@ -1,7 +1,12 @@
 <template>
   <div class="movie-container" v-if="!isMobile">
+    <div class="head">
+      {{currMovie}}
+    </div>
     <div class="body">
-      <Xgplayer :config="config" @player="Player = $event"/>
+      <client-only>
+        <Xgplayer :config="config" @player="Player = $event"/>
+      </client-only>
       <div class="movielist">
         <div >电影列表</div>
         <div v-for="item in movielist" @click="change(item)" >
@@ -13,11 +18,13 @@
 
   <div v-else class="float-box"  >
     <div  class="movie-container-m" ref="moviebox">
-      <!-- <div class="head">
+      <div class="head">
         {{currMovie}}
-      </div> -->
+      </div>
       <div class="body">
-        <Xgplayer :config="config" @player="Player = $event"/>
+         <client-only>
+          <Xgplayer :config="config" @player="Player = $event"/>
+        </client-only>
         <div class="movielist">
           <div >电影列表</div>
           <div class="namebox" >
@@ -40,8 +47,9 @@
           url: 'https://www.kedong.me/static/video/肥龙过江.mp4',
           playbackRate: [0.5, 0.75, 1, 1.5, 2],
           width: 960,
-          // height: 480,
-          videoInit: true
+          height: 480,
+          videoInit: true,
+          pip: true
         },
         Player: null
       }
@@ -59,8 +67,8 @@
     },
 
     mounted() {
+      this.currMovie = this.movielist[0].slice(0,-4)
       if(this.isMobile){
-
         let width=this.$refs.moviebox.offsetWidth
         console.log(width)
         this.config.width=width
@@ -78,42 +86,6 @@
         console.log(1234,this.currMovie)
         this.$forceUpdate();
       },
-      // listen event
-      onPlayerPlay(player) {
-        // console.log('player play!', player)
-      },
-      onPlayerPause(player) {
-        // console.log('player pause!', player)
-      },
-      onPlayerEnded(player) {
-        // console.log('player ended!', player)
-      },
-      onPlayerLoadeddata(player) {
-        // console.log('player Loadeddata!', player)
-      },
-      onPlayerWaiting(player) {
-        // console.log('player Waiting!', player)
-      },
-      onPlayerPlaying(player) {
-        // console.log('player Playing!', player)
-      },
-      onPlayerTimeupdate(player) {
-        // console.log('player Timeupdate!', player.currentTime())
-      },
-      onPlayerCanplay(player) {
-        // console.log('player Canplay!', player)
-      },
-      onPlayerCanplaythrough(player) {
-        // console.log('player Canplaythrough!', player)
-      },
-      // or listen state event
-      playerStateChanged(playerCurrentState) {
-        console.log('player current update state', playerCurrentState)
-      },
-      // player is ready
-      playerReadied(player) {
-        console.log('example 01: the player is readied', player)
-      }
     }
   }
 </script>

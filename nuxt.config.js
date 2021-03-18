@@ -92,7 +92,7 @@ export default {
     { src: "~/plugins/swiper", mode: "client" },
     { src: "~/plugins/popup", mode: "client" },
     { src: "~/plugins/day", mode: "client" },
-    { src: "~/plugins/canvas-nest", mode: "client" },
+    // { src: "~/plugins/canvas-nest", mode: "client" },
     { src: "~/plugins/timeline.js", mode: "client" },
     { src: "~/plugins/waterfall.js", mode: "client" },
     { src: "~/plugins/paginate.js", mode: "client" },
