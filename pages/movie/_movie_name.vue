@@ -9,7 +9,7 @@
       </client-only>
       <div class="movielist">
         <div >电影列表</div>
-        <div v-for="item in movielist" @click="change(item)" >
+        <div v-for="item in movielist" @click="change(item)" :key="item">
           {{item.slice(0,-4)}}
         </div>
       </div>
@@ -28,7 +28,7 @@
         <div class="movielist">
           <div >电影列表</div>
           <div class="namebox" >
-            <div v-for="item in movielist" @click="change(item)" class="name">
+            <div v-for="item in movielist" @click="change(item)" class="name" :key="item">
               {{item.slice(0,-4)}}
             </div>
           </div>

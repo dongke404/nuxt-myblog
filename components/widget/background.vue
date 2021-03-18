@@ -1,15 +1,21 @@
 <template>
   <div id="background">
     <client-only>
-      <div class="background-image" style=""></div>
+      <div class='background-image' :style="{backgroundImage: 'url(' + coverImgUrl + ')', backgroundSize:'cover'}" ></div>
       <!-- <vue-canvas-nest :config="{color:'244,62,6',count: 99,opacity:0.7}"></vue-canvas-nest> -->
+
     </client-only>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Background"
+  name: "Background",
+  data(){
+    return {
+      coverImgUrl: "https://www.kedong.me/static/images/app/background.jpg",
+    }
+  }
 };
 </script>
 
@@ -29,7 +35,6 @@ export default {
     width: 100%;
     height: 100%;
     opacity: 0.7;
-    background: url("https://www.kedong.me/static/images/app/background.jpg") no-repeat;
     background-size:cover;
     &.dark {
       opacity: 0.3;

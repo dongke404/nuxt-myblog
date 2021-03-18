@@ -42,7 +42,7 @@
         <span class="text" v-text="$i18n.nav.movie.value"></span>
       </nuxt-link>
 
-      <a
+      <!-- <a
         :href="links.Mysite"
         target="_blank"
         class="item ad aliyun"
@@ -53,7 +53,7 @@
         <span class="superscript">
           <i class="iconfont icon-hot"></i>
         </span>
-      </a>
+      </a> -->
     </nav>
   </div>
 </template>

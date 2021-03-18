@@ -164,7 +164,7 @@ export default {
         }
 
         &.hybrid {
-          background-color: rgba($primary, 0.5);
+          background-color: rgba($yellow, 0.5);
         }
       }
 
