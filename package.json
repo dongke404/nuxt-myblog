@@ -38,7 +38,7 @@
     "xgplayer-vue": "^1.1.5"
   },
   "devDependencies": {
-    "node-sass": "^4.14.0",
+    "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2",
     "vue-waterfall-easy": "^2.4.4"
   }

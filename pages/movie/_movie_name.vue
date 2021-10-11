@@ -4,12 +4,24 @@
       {{currMovie}}
     </div>
     <div class="body">
-      <client-only>
-        <Xgplayer :config="config" @player="Player = $event"/>
-      </client-only>
+      <div class="video-player-box"
+          :playsinline="playsinline"
+          @play="onPlayerPlay($event)"
+          @pause="onPlayerPause($event)"
+          @ended="onPlayerEnded($event)"
+          @loadeddata="onPlayerLoadeddata($event)"
+          @waiting="onPlayerWaiting($event)"
+          @playing="onPlayerPlaying($event)"
+          @timeupdate="onPlayerTimeupdate($event)"
+          @canplay="onPlayerCanplay($event)"
+          @canplaythrough="onPlayerCanplaythrough($event)"
+          @ready="playerReadied"
+          @statechanged="playerStateChanged($event)"
+          v-video-player:myVideoPlayer="playerOptions">
+      </div>
       <div class="movielist">
         <div >电影列表</div>
-        <div v-for="item in movielist" @click="change(item)" :key="item">
+        <div v-for="(item,index) in movielist" @click="change(item)" :key="index">
           {{item.slice(0,-4)}}
         </div>
       </div>
@@ -22,13 +34,25 @@
         {{currMovie}}
       </div>
       <div class="body">
-         <client-only>
-          <Xgplayer :config="config" @player="Player = $event"/>
-        </client-only>
+        <div class="video-player-box"
+            :playsinline="playsinline"
+            @play="onPlayerPlay($event)"
+            @pause="onPlayerPause($event)"
+            @ended="onPlayerEnded($event)"
+            @loadeddata="onPlayerLoadeddata($event)"
+            @waiting="onPlayerWaiting($event)"
+            @playing="onPlayerPlaying($event)"
+            @timeupdate="onPlayerTimeupdate($event)"
+            @canplay="onPlayerCanplay($event)"
+            @canplaythrough="onPlayerCanplaythrough($event)"
+            @ready="playerReadied"
+            @statechanged="playerStateChanged($event)"
+            v-video-player:myVideoPlayer="playerOptions">
+        </div>
         <div class="movielist">
           <div >电影列表</div>
           <div class="namebox" >
-            <div v-for="item in movielist" @click="change(item)" class="name" :key="item">
+            <div v-for="(item,index) in movielist" @click="change(item)" class="name" :key="index">
               {{item.slice(0,-4)}}
             </div>
           </div>
@@ -42,16 +66,22 @@
   export default {
     data () {
       return {
-        config: {
-          id: 'vs',
-          url: 'https://www.kedong.me/static/video/肥龙过江.mp4',
-          playbackRate: [0.5, 0.75, 1, 1.5, 2],
-          width: 960,
-          height: 480,
-          videoInit: true,
-          pip: true
-        },
-        Player: null
+        // component options
+        playsinline: true,
+        currMovie: "",
+        // videojs options
+        playerOptions: {
+          width:960,
+          muted: true,
+          language: 'en',
+          playbackRates: [0.7, 1.0, 1.5, 2.0],
+          sources: [{
+            type: "video/mp4",
+            src: ""
+          },
+          ],
+          // poster: "/static/images/author.jpg",
+        }
       }
     },
     fetch({ store }) {
@@ -67,13 +97,14 @@
     },
 
     mounted() {
-      this.currMovie = this.movielist[0].slice(0,-4)
+      this.currMovie = this.movielist[0]
+      this.playerOptions.sources=[
+          { src: `https://www.kedong.me/static/video/${this.movielist[0]}`, type: 'video/mp4'},
+          ]
       if(this.isMobile){
         let width=this.$refs.moviebox.offsetWidth
-        console.log(width)
-        this.config.width=width
+         this.playerOptions.width=width
       }
-      this.$forceUpdate();
       // console.log('this is current player instance object', this.myVideoPlayer)
     },
     methods: {
@@ -86,6 +117,42 @@
         console.log(1234,this.currMovie)
         this.$forceUpdate();
       },
+      // listen event
+      onPlayerPlay(player) {
+        // console.log('player play!', player)
+      },
+      onPlayerPause(player) {
+        // console.log('player pause!', player)
+      },
+      onPlayerEnded(player) {
+        // console.log('player ended!', player)
+      },
+      onPlayerLoadeddata(player) {
+        // console.log('player Loadeddata!', player)
+      },
+      onPlayerWaiting(player) {
+        // console.log('player Waiting!', player)
+      },
+      onPlayerPlaying(player) {
+        // console.log('player Playing!', player)
+      },
+      onPlayerTimeupdate(player) {
+        // console.log('player Timeupdate!', player.currentTime())
+      },
+      onPlayerCanplay(player) {
+        // console.log('player Canplay!', player)
+      },
+      onPlayerCanplaythrough(player) {
+        // console.log('player Canplaythrough!', player)
+      },
+      // or listen state event
+      playerStateChanged(playerCurrentState) {
+        // console.log('player current update state', playerCurrentState)
+      },
+      // player is ready
+      playerReadied(player) {
+        // console.log('example 01: the player is readied', player)
+      }
     }
   }
 </script>
