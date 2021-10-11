@@ -8,7 +8,6 @@ export const routerMap = {
   category: {
     "code": {
       backgroundImg: " https://www.kedong.me/static/images/app/code.jpg",
-
       text: "代码",
       icon: "code"
     },
@@ -58,16 +57,13 @@ export const personInfo = {
   mobileAvatar: "https://www.kedong.me/static/images/app/mobileAvatar.png",
   address: "浙江 , 杭州",
   email: 'dongkirk1992@gmail.com',
-
 }
 
 export const links = {
   Mysite: 'http://www.dongkirk.xyz/'
-
 }
 
 export const friendLinks = {
-
 }
 
 export const fetch = {

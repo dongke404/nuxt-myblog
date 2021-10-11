@@ -6,14 +6,16 @@
 const NODE_ENV = process.env.NODE_ENV
 const apisMap = {
   development: {
-    FE: 'http://localhost:3000',
-    BASE: 'http://localhost:5000',
-    MUSIC: 'http://www.dongkirk.xyz/playlist/detail?id=4992612670'
+    WEBSITE: 'http://localhost:4000',//博客地址
+    BASE: 'http://192.168.68.130/api', //接口地址
+    MUSIC: 'http://www.kedong.me:9999/playlist/detail?id=4992612670',//歌单地址
+    MUSIC_BASEURL:'http://www.kedong.me:9999',
   },
   production: {
-    FE: 'https://www.kedong.me',
+    WEBSITE: 'https://www.kedong.me',
     BASE: 'https://www.kedong.me/api',
-    MUSIC: 'http://www.dongkirk.xyz/playlist/detail?id=4992612670'
+    MUSIC: 'http://www.kedong.me:9999/playlist/detail?id=4992612670',
+    MUSIC_BASEURL:'http://www.kedong.me:9999',
   }
 }
 

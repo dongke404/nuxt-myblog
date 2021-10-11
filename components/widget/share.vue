@@ -84,7 +84,7 @@ export default {
   },
   computed: {
     url() {
-      return apiConfig.FE + this.$route.fullPath;
+      return apiConfig.WEBSITE + this.$route.fullPath;
     }
   },
   methods: {

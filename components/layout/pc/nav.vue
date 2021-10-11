@@ -21,10 +21,10 @@
         <i class="iconfont icon-date"></i>
         <span class="text" v-text="$i18n.nav.timeline.value"></span>
       </nuxt-link>
-      <nuxt-link to="/photo" class="item">
+      <!-- <nuxt-link to="/photo" class="item">
         <i class="iconfont icon-photo"></i>
         <span class="text" v-text="$i18n.nav.photo.value"></span>
-      </nuxt-link>
+      </nuxt-link> -->
       <nuxt-link to="/file/1" class="item">
         <i class="iconfont icon-file"></i>
         <span class="text" v-text="$i18n.nav.file.value"></span>

@@ -1,6 +1,29 @@
 import apiConfig from "./config/api.config";
-import {meta} from './config/app.config'
+import { meta } from './config/app.config'
 
+let headmeta = [
+  { charset: "utf-8" },
+  {
+    name: "viewport",
+    content: "width=device-width, initial-scale=1.0, user-scalable=no",
+  },
+  //minimum-scale:1, maximum-scale:1
+  {
+    hid: "description",
+    name: "description",
+    content: process.env.npm_package_description || "",
+  },
+  //谷歌爬虫
+  {
+    name: "google-site-verification",
+    content: "7wzBsyvulUETi8pO6N7wo7mZvkmdmhRFH6hcP0yBts4"
+  }
+]
+if (process.env.NODE_ENV=="production"){
+  console.log('当前环境',process.env.NODE_ENV)
+  //http自动会变https
+  headmeta.push(  { 'http-equiv': "Content-Security-Policy", content: "upgrade-insecure-requests" })
+}
 export default {
   mode: "universal",
   env: {
@@ -9,24 +32,7 @@ export default {
   head: {
     title: `${meta.title}`,
     titleTemplate: `%s | ${meta.title}`,
-    meta: [
-      { charset: "utf-8" },
-      { 'http-equiv': "Content-Security-Policy", content: "upgrade-insecure-requests" },
-      {
-        name: "viewport",
-        content: "width=device-width, initial-scale=1.0, user-scalable=no",
-      },
-      //minimum-scale:1, maximum-scale:1
-      {
-        hid: "description",
-        name: "description",
-        content: process.env.npm_package_description || "",
-      },
-      {
-        name:"google-site-verification",
-        content:"7wzBsyvulUETi8pO6N7wo7mZvkmdmhRFH6hcP0yBts4"
-      }
-    ],
+    meta: headmeta,
     link: [
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
       {

@@ -25,7 +25,7 @@ export const actions = {
           idslist.push(item.id)
         }
         let idstr = idslist.join(",")
-        this.$axios.$get(`http://www.dongkirk.xyz/song/detail?ids=${idstr}`).then(res=>{
+        this.$axios.$get(`${apiconfig.MUSIC_BASEURL}/song/detail?ids=${idstr}`).then(res=>{
           if (response.code===200){
             reslove(res.songs)
           }

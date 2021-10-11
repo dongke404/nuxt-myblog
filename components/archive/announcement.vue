@@ -1,21 +1,28 @@
 <template>
-  <div class="announcement" :class="{
+  <div
+    class="announcement"
+    :class="{
       mobile: isMobile,
-      theme
-    }">
+      theme,
+    }"
+  >
     <div v-if="!isMobile" class="background"></div>
     <div class="title">
       <span
         class="icon-box"
         :style="{
-          transform: `rotate(-${activeIndex * 90}deg)`
+          transform: `rotate(-${activeIndex * 90}deg)`,
         }"
       >
         <i class="iconfont icon-feibiaoshanye" />
       </span>
     </div>
     <transition name="module" mode="out-in">
-      <empty-box v-if="!announcement.length" key="empty" class="announcement-empty-box">
+      <empty-box
+        v-if="!announcement.length"
+        key="empty"
+        class="announcement-empty-box"
+      >
         <slot>{{ $i18n.text.announcement.empty }}</slot>
       </empty-box>
       <div key="swiper" class="swiper-box">
@@ -25,14 +32,22 @@
           @transition-start="handleSwiperTransitionStart"
         >
           <div class="swiper-wrapper">
-            <div v-for="(ann, index) in announcement" :key="index" class="swiper-slide slide-item">
+            <div
+              v-for="(ann, index) in announcement"
+              :key="index"
+              class="swiper-slide slide-item"
+            >
               <div class="content" v-text="ann.say"></div>
-              <div class="date">~ {{dayjs(ann.date).fromNow()}}</div>
+              <div class="date">~ {{ dayjs(ann.date).fromNow() }}</div>
             </div>
           </div>
         </div>
         <div class="navigation">
-          <div class="button prev" :class="{ disabled: activeIndex === 0 }" @click="prevSlide">
+          <div
+            class="button prev"
+            :class="{ disabled: activeIndex === 0 }"
+            @click="prevSlide"
+          >
             <i class="iconfont icon-announcement-prev" />
           </div>
           <div class="button next" @click="nextSlide">
@@ -51,8 +66,8 @@ export default Vue.extend({
   name: "IndexAnnouncement",
   props: {
     announcement: {
-      type: Array
-    }
+      type: Array,
+    },
   },
   data() {
     return {
@@ -61,13 +76,13 @@ export default Vue.extend({
         height: 34,
         autoplay: {
           delay: 3500,
-          disableOnInteraction: false
+          disableOnInteraction: false,
         },
         allowTouchMove: false,
         slidesPerView: 1,
         setWrapperSize: true,
-        direction: "vertical"
-      }
+        direction: "vertical",
+      },
     };
   },
   computed: {
@@ -79,7 +94,7 @@ export default Vue.extend({
     },
     theme() {
       return this.$store.state.global.theme;
-    }
+    },
   },
   methods: {
     prevSlide() {
@@ -90,8 +105,8 @@ export default Vue.extend({
     },
     handleSwiperTransitionStart() {
       this.activeIndex = this.swiper.activeIndex || 0;
-    }
-  }
+    },
+  },
 });
 </script>
 

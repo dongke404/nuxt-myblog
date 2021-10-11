@@ -254,7 +254,7 @@ export default {
       return Number(this.$route.params.article_id);
     },
     articleUrl() {
-      return apisMap.FE + `/article/${this.article.article_id}`;
+      return apisMap.WEBSITE + `/article/${this.article.article_id}`;
     },
 
     relatedArticles() {
