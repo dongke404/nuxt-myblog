@@ -19,7 +19,7 @@ export default Vue.extend({
   components: {
     PcMainView,
     Clipboard,
-    MobileMainView
+    MobileMainView,
   },
   computed: {
     theme() {
@@ -27,11 +27,11 @@ export default Vue.extend({
     },
     isMobile() {
       return this.$store.state.global.isMobile;
-    }
+    },
   },
   mounted() {
-    this.$axios.defaults.withCredentials=true
-  }
+    this.$axios.defaults.withCredentials = true;
+  },
 });
 </script>
 

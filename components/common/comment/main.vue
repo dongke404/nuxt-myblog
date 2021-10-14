@@ -407,7 +407,7 @@ export default {
       return marked(content, false);
     },
     getGravatarUrlByEmail(email) {
-      return emailRegex.test(email) ? gravatar.url(email) : null;
+      return emailRegex.test(email) ? gravatar.url(email).replace(/www.gravatar.com/g, "gravatar.zeruns.tech") : null;
     },
     // 验证数据
     checkRule() {

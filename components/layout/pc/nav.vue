@@ -25,10 +25,10 @@
         <i class="iconfont icon-photo"></i>
         <span class="text" v-text="$i18n.nav.photo.value"></span>
       </nuxt-link> -->
-      <nuxt-link to="/file/1" class="item">
+      <!-- <nuxt-link to="/file/1" class="item">
         <i class="iconfont icon-file"></i>
         <span class="text" v-text="$i18n.nav.file.value"></span>
-      </nuxt-link>
+      </nuxt-link> -->
       <nuxt-link to="/guestbook" class="item guestbook">
         <i class="iconfont icon-guestbook"></i>
         <span class="text" v-text="$i18n.nav.guestbook.value"></span>
@@ -37,23 +37,23 @@
         <i class="iconfont icon-personInfo"></i>
         <span class="text" v-text="$i18n.nav.about.value"></span>
       </nuxt-link>
-      <nuxt-link to="/movie" class="item">
+      <!-- <nuxt-link to="/movie" class="item">
         <i class="iconfont icon-movie"></i>
         <span class="text" v-text="$i18n.nav.movie.value"></span>
-      </nuxt-link>
+      </nuxt-link> -->
 
-      <!-- <a
-        :href="links.Mysite"
+      <a
+        href="http://movie.kedong.me"
         target="_blank"
         class="item ad aliyun"
         rel="external nofollow noopener"
       >
-        <i class="iconfont icon-shequ1"></i>
-        <span class="text" v-text="'MYSITE'"></span>
+        <i class="iconfont icon-movie"></i>
+        <span class="text" v-text="$i18n.nav.movie.value"></span>
         <span class="superscript">
           <i class="iconfont icon-hot"></i>
         </span>
-      </a> -->
+      </a>
     </nav>
   </div>
 </template>
@@ -63,8 +63,8 @@ import { links } from "~/config/app.config";
 export default {
   name: "PcNav",
   computed: {
-    links: () => links
-  }
+    links: () => links,
+  },
 };
 </script>
 
@@ -102,7 +102,7 @@ export default {
       font-weight: 700;
       border-radius: 1px;
       color: $text-secondary;
-      font-family: 'webfont' !important;
+      font-family: "webfont" !important;
       letter-spacing: 0.5px;
       margin-bottom: $sm-gap;
       @include color-transition();
