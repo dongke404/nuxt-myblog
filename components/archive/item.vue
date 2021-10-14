@@ -3,40 +3,45 @@
     <div class="item-content">
       <div v-if="!isMobile" class="item-thumb">
         <nuxt-link :to="`/article/${article.article_id}`">
-          <span class="item-oirigin" :class="originClass">{{ originText }}</span>
-          <img class="item-thumb-img" :src="article.imgUrl" />
+          <span class="item-oirigin" :class="originClass">{{
+            originText
+          }}</span>
+          <img class="item-thumb-img" :src="apisMap.WEBSITE + article.imgUrl" />
         </nuxt-link>
       </div>
       <div class="item-body">
         <h5 class="item-title">
-          <nuxt-link :to="`/article/${article.article_id}`" v-text="article.title" />
+          <nuxt-link
+            :to="`/article/${article.article_id}`"
+            v-text="article.title"
+          />
         </h5>
         <p
           class="item-description"
-          style="-webkit-box-orient: vertical;"
+          style="-webkit-box-orient: vertical"
           v-html="article.description"
         ></p>
         <div class="item-meta">
           <span class="date">
             <i class="iconfont icon-clock"></i>
-            <span>{{ article.date}}</span>
+            <span>{{ article.date }}</span>
           </span>
           <span class="views">
             <i class="iconfont icon-view"></i>
-            <span>{{ article.view_num ||0 }}</span>
+            <span>{{ article.view_num || 0 }}</span>
           </span>
           <span class="comments">
             <i class="iconfont icon-comment"></i>
-            <span>{{ article.cmt_num ||0 }}</span>
+            <span>{{ article.cmt_num || 0 }}</span>
           </span>
           <span class="likes">
             <i class="iconfont icon-like" :class="{ liked: isLiked }"></i>
-            <span>{{ article.likes ||0}}</span>
+            <span>{{ article.likes || 0 }}</span>
           </span>
           <span v-if="!isMobile" class="categories">
             <i class="iconfont icon-category"></i>
             <nuxt-link :to="`/category/${article.category}`">
-              <span>{{ i18nConfig.data.nav[article.category][language]}}</span>
+              <span>{{ i18nConfig.data.nav[article.category][language] }}</span>
             </nuxt-link>
           </span>
         </div>
@@ -46,20 +51,22 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import apisMap from "~/config/api.config";
 import i18nConfig from "~/config/i18n.config";
+import { mapState } from "vuex";
 import { getJSONStorageReader } from "~/utils/local-storage";
 import { OriginState, StorageField } from "~/constants/system";
 const localHistoryLikes = getJSONStorageReader(StorageField.UserLikeHistory);
+
 export default {
   name: "ArticleListItem",
   props: {
-    article: Object
+    article: Object,
   },
   data() {
     return {
       isLiked: false,
-      i18nConfig: i18nConfig
+      i18nConfig: i18nConfig,
     };
   },
   computed: {
@@ -86,13 +93,16 @@ export default {
       if (this.article.origin === OriginState.Hybrid) {
         return "hybrid";
       }
-    }
+    },
+  },
+  created() {
+    this.apisMap = apisMap;
   },
   mounted() {
     this.isLiked = localHistoryLikes
       .get()
       ?.pages.includes(this.article.article_id);
-  }
+  },
 };
 </script>
 

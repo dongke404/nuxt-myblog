@@ -107,7 +107,7 @@
                 :to="`/article/${article.article_id}`"
                 :title="'article.title'"
               >
-                <img :src="article.imgUrl" :alt="''" class="thumb" @error="hiddenImg" />
+                <img :src="apisMap.WEBSITE+article.imgUrl" :alt="''" class="thumb" @error="hiddenImg" />
                 <span class="title">
                   <span class="text">{{ article.title }}</span>
                 </span>
@@ -199,6 +199,9 @@ export default {
       },
       isReadMoreLoading: false
     };
+  },
+  created(){
+    this.apisMap=apisMap
   },
   mounted() {
     if (process.browser && this.isPrivacy) {
@@ -900,7 +903,7 @@ user-select: none;
             }
 
             > .thumb {
-              width: auto;
+              width: 200px;
               height: 100%;
               transform: scale(1);
               transition: transform $transition-time-normal,

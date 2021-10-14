@@ -10,7 +10,7 @@
             <div class="content">
               <template>
                 <nuxt-link :to="`/article/${_article.article_id}`" class="link">
-                  <img :src="_article.imgUrl" :alt="_article.title" />
+                  <img :src="apisMap.WEBSITE+_article.imgUrl" :alt="_article.title" />
                   <span class="title">{{ _article.title }}</span>
                 </nuxt-link>
               </template>
@@ -24,6 +24,8 @@
 </template>
 
 <script>
+import apisMap from "~/config/api.config";
+
 export default {
   name: "IndexCarrousel",
   props: {
@@ -31,7 +33,9 @@ export default {
       type: Object
     }
   },
-
+  created() {
+    this.apisMap = apisMap;
+  },
   data() {
     return {
       swiperOption: {
@@ -128,6 +132,7 @@ $mobile-carrousel-height: calc((100vw - 2rem) * 0.35);
 
         img {
           width: 100%;
+          height: 100%;
           transform: scale(1);
           transition: transform $transition-time-slow;
 
