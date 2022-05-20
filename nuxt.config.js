@@ -90,7 +90,7 @@ export default {
     linkActiveClass: "link-active",
     middleware: ["change-page-col"],
   },
-  plugins: [
+  plugins: [//不用的插件请注释
     { src: "~/plugins/marked" },
     { src: "~/plugins/highlight" },
     { src: "~/plugins/extend" },
@@ -102,7 +102,7 @@ export default {
     { src: "~/plugins/timeline.js", mode: "client" },
     { src: "~/plugins/waterfall.js", mode: "client" },
     { src: "~/plugins/paginate.js", mode: "client" },
-    { src: '~/plugins/copy', mode: 'client' },
+    // { src: '~/plugins/copy', mode: 'client' },
     { src: '~/plugins/player.js', ssr: false },
     { src: '~/plugins/xgplayer.js', ssr: false }
   ],

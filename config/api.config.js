@@ -6,9 +6,9 @@
 const NODE_ENV = process.env.NODE_ENV
 const apisMap = {
   development: {
-    WEBSITE: 'http://192.168.68.130',//博客地址
-    BASE: 'http://192.168.68.130/api', //接口地址
-    MUSIC: 'http://www.kedong.me:9999/playlist/detail?id=4992612670',//歌单地址
+    WEBSITE: 'https://www.kedong.me',//博客地址
+    BASE: 'http://127.0.0.1:5000/api', //接口地址
+    MUSIC: 'http://www.kedong.me:9999/playlist/detail?id=4992612670',//歌单地址 改自己id
     MUSIC_BASEURL:'http://www.kedong.me:9999',
   },
   production: {
