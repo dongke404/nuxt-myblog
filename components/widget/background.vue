@@ -13,7 +13,7 @@ export default {
   name: "Background",
   data(){
     return {
-      coverImgUrl: "https://www.kedong.me/static/images/app/background.jpg",
+      coverImgUrl: "/static/images/app/background.jpg",
     }
   }
 };

@@ -7,32 +7,32 @@
 export const routerMap = {
   category: {
     "code": {
-      backgroundImg: " https://www.kedong.me/static/images/app/code.jpg",
+      backgroundImg: "/static/images/app/code.jpg",
       text: "代码",
       icon: "code"
     },
     "think": {
-      backgroundImg: " https://www.kedong.me/static/images/app/think.jpg",
+      backgroundImg: "/static/images/app/think.jpg",
       text: "思考",
       icon: "think"
     },
     "life": {
-      backgroundImg: " https://www.kedong.me/static/images/app/life.jpg",
+      backgroundImg: "/static/images/app/life.jpg",
       text: "生活",
       icon: "life"
     }
   },
   search: {
-    backgroundImg: " https://www.kedong.me/static/images/app/search.jpg",
+    backgroundImg: "/static/images/app/search.jpg",
     text: "搜索",
     icon: "search"
   },
   date: {
-    backgroundImg: " https://www.kedong.me/static/images/app/date.jpg",
+    backgroundImg: "/static/images/app/date.jpg",
     icon: "date"
   },
   guestbook: {
-    backgroundImg: " https://www.kedong.me/static/images/app/guestbook.jpg",
+    backgroundImg: " /static/images/app/guestbook.jpg",
     text: "留言板",
   }
 }
@@ -47,20 +47,20 @@ export const meta = {
   description: '',
   url: 'kedong.me',
   author: 'Kirk Dong',
-  defaultgravatar: "https://www.kedong.me/static/images/app/defaultgravatar.png"
+  defaultgravatar: "/static/images/app/defaultgravatar.png"
 }
 
 //个人信息
 export const personInfo = {
   hobby: '武侠古风，二次元，数码，跑步,游戏',
-  aboutmeImg: "https://www.kedong.me/static/images/app/aboutme.jpg",
-  mobileAvatar: "https://www.kedong.me/static/images/app/mobileAvatar.png",
+  aboutmeImg: "/static/images/app/aboutme.jpg",
+  mobileAvatar: "/static/images/app/mobileAvatar.png",
   address: "浙江 , 杭州",
   email: 'dongkirk1992@gmail.com',
 }
 
 export const links = {
-  Mysite: 'http://www.dongkirk.xyz/'
+  Mysite: ''
 }
 
 export const friendLinks = {
