@@ -11,7 +11,8 @@
         <share-box class="sidebar-share" v-if="!isFullViewWidth" />
       </figure>
     </client-only>
-    <Header :showMusic="!isFullViewWidth" ></Header>
+    <!-- <Header :showMusic="!isFullViewWidth" ></Header> -->
+    <Header :showMusic="false" ></Header>
     <main id="main" class="main-container" :class="{
         'full-view': isFullViewWidth}">
       <nav-view v-if="!isThreeColumns && !isFullViewWidth" />

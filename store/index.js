@@ -20,7 +20,7 @@ export const actions = {
       store.dispatch('global/fetchAppOption'),
       store.dispatch('global/fetchFontcss'),
       store.dispatch('tag/fetchList'),
-      store.dispatch("music/fetchList"),
+      // store.dispatch("music/fetchList"),
     ]
 
     // 如果是非中文地区用户则设置为英文
